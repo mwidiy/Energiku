@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import HeaderComponen from '../componens/HeaderComponen';
 
 const Homepage = () => {
   return (
-    <div><h1 className="text-3xl font-bold underline">Disini Website kita</h1></div>
-  )
+    <div>
+      <HeaderComponen />
+    </div>
+  );
 }
 
-export default Homepage
+export default Homepage;
