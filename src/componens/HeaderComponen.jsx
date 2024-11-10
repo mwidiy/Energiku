@@ -27,6 +27,8 @@ import Image17 from "../assets/support7.png";
 import Image18 from "../assets/support8.png";
 import Image19 from "../assets/support9.jpeg";
 
+
+
 function App() {
   const settings = {
     accessibility: true,

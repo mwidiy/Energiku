@@ -1,8 +1,15 @@
 import React from 'react'
+import NavbarComponen from '../componens/NavbarComponen'
+import FooterComponen from '../componens/FooterComponen'
+import Contact from '../componens/Contact'
 
 const Contakpage = () => {
   return (
-    <div>halaman contak</div>
+    <div>
+      <NavbarComponen />
+      <Contact />
+      <FooterComponen />
+    </div>
   )
 }
 
