@@ -1,8 +1,9 @@
 import React from 'react'
+import MitraComponen from '../componens/MitraComponen'
 
 const Partnerpage = () => {
   return (
-    <div>Partnerpage</div>
+    <div><MitraComponen /></div>
   )
 }
 
