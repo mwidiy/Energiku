@@ -14,7 +14,15 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Styling for Slick Carousel navigation buttons */
+/* navbar */
+/* Contoh CSS jika tidak menggunakan Tailwind */
+.navlink-active {
+    background-color: #EE9F26;
+    color: white;
+}
+  
+
+/* home - review card */
 .slick-prev,
 .slick-next {
   background-color: black !important; /* Ensures the background is black */
@@ -34,15 +42,53 @@
   }
 .slick-prev:before,
 .slick-next:before {
-  color: white; /* Ensures the icon is white */
-  font-size: 16px; /* Ensures the icon size is consistent */
+  color: white; 
+  font-size: 16px; 
 }
 
-/* Additional Slick Carousel styling (if needed) */
+
 .slick-prev {
-  left: -40px; /* Adjust position of the left arrow */
+  left: -40px; 
 }
 
 .slick-next {
-  right: -40px; /* Adjust position of the right arrow */
+  right: -40px; 
 }
+
+
+/* mitra title */
+
+.panah {
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+  }
+
+  /* Gaya untuk indikator slider */
+  /* Membuat semua titik indikator (aktif dan tidak aktif) berwarna kuning */
+.slick-dots li button:before { 
+    opacity: 1 !important;     /* Menghilangkan transparansi */
+    font-size: 10px !important;/* Ukuran bola indikator lebih besar */
+  }
+  
+  /* Titik indikator aktif */
+  .slick-dots li.slick-active button:before {
+    color: #EE9F26 !important; /* Warna kuning lebih solid untuk titik indikator aktif */
+    opacity: 1 !important;     /* Tidak ada transparansi pada titik aktif */
+    font-size: 10px !important;/* Ukuran bola indikator tetap besar */
+  }
+  
+  /* Tambahan: menghilangkan latar belakang tombol indikator untuk memastikan hanya warna bola yang berubah */
+  .slick-dots li button {
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  
+  
+  
+  

@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
-import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom"; // Menggunakan NavLink untuk mendeteksi link aktif
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
 
 const NavbarComponen = () => {
   const [menu, setMenu] = useState(false);
+  const [scrolling, setScrolling] = useState(false); // State untuk melacak scroll
+
+  // Fungsi untuk menangani perubahan scroll
+  const handleScroll = () => {
+    if (window.scrollY > 50) {
+      setScrolling(true); // Jika scroll lebih dari 50px, ubah state menjadi true
+    } else {
+      setScrolling(false); // Jika scroll kurang dari 50px, tetap false
+    }
+  };
+
+  // Menambahkan event listener untuk scroll
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll); // Clean up event listener
+    };
+  }, []);
 
   const handleChange = () => {
     setMenu(!menu);
@@ -19,58 +37,68 @@ const NavbarComponen = () => {
     <>
       {/* Navbar Container */}
       <div className="absolute w-full z-10">
-        <div className="flex justify-between p-8 lg:px-32 px-10 items-center">
+        <div
+          className={`flex justify-between p-8 lg:px-32 px-10 items-center fixed top-0 left-0 w-full transition-all duration-300 ${
+            scrolling ? "bg-white shadow-lg" : "bg-transparent"
+          }`}
+        >
           {/* Logo */}
           <div className="w-[210px] h-[50px] cursor-pointer">
             <img src={logo} alt="Logo" />
           </div>
           {/* Navbar Links */}
           <nav className="hidden md:flex gap-x-3 text-lg font-medium">
-            <Link
-              to="Home"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className="hover:text-white hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+            <NavLink
+              to="/Energiku"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                  : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+              }
+              end // Ensure it only matches the root path
             >
               Beranda
-            </Link>
-            <Link
-              to="About"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className="hover:text-white hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+            </NavLink>
+            <NavLink
+              to="/Energiku/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                  : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+              }
             >
               Tentang Kami
-            </Link>
-            <Link
-              to="Client"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className="hover:text-white hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+            </NavLink>
+            <NavLink
+              to="/Energiku/partner"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                  : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+              }
             >
               Mitra
-            </Link>
-            <Link
-              to="News"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className="hover:text-white hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+            </NavLink>
+            <NavLink
+              to="/Energiku/news"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                  : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+              }
             >
               Berita & Edukasi
-            </Link>
-            <Link
-              to="Contact"
-              spy={true}
-              smooth={true}
-              duration={500}
-              className="hover:text-white hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+            </NavLink>
+            <NavLink
+              to="/Energiku/contak"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                  : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+              }
             >
               Kontak
-            </Link>
+            </NavLink>
           </nav>
           <div className="text-[35px] hover:text-[#EE9F26] hidden lg:flex cursor-pointer">
             <VscAccount />
@@ -78,16 +106,13 @@ const NavbarComponen = () => {
           {/* Mobile Menu Icon */}
           <div className="md:hidden flex items-center cursor-pointer">
             {menu ? (
-              <AiOutlineClose
-                className="text-white"
-                size={25}
-                onClick={handleChange}
-              />
+              <AiOutlineClose className="text-white" size={25} onClick={handleChange} />
             ) : (
               <AiOutlineMenuUnfold size={25} onClick={handleChange} />
             )}
           </div>
         </div>
+
         {/* Mobile Menu */}
         <div
           className={`${
@@ -96,62 +121,64 @@ const NavbarComponen = () => {
         >
           {/* Close Icon inside the Mobile Menu */}
           <div className="absolute top-4 right-4 cursor-pointer">
-            <AiOutlineClose
-              className="text-white"
-              size={25}
-              onClick={closeMenu}
-            />
+            <AiOutlineClose className="text-white" size={25} onClick={closeMenu} />
           </div>
-          <Link
-            to="Home"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-white mx-auto w-1/2 hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+          <NavLink
+            to="/Energiku"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+            }
             onClick={closeMenu}
+            end // Ensure it only matches the root path
           >
             Beranda
-          </Link>
-          <Link
-            to="About"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-white mx-auto w-1/2 hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+          </NavLink>
+          <NavLink
+            to="/Energiku/about"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+            }
             onClick={closeMenu}
           >
             Tentang Kami
-          </Link>
-          <Link
-            to="Client"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-white mx-auto w-1/2 hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+          </NavLink>
+          <NavLink
+            to="/Energiku/partner"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+            }
             onClick={closeMenu}
           >
             Mitra
-          </Link>
-          <Link
-            to="News"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-white mx-auto w-1/2 hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+          </NavLink>
+          <NavLink
+            to="/Energiku/news"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+            }
             onClick={closeMenu}
           >
             Berita & Edukasi
-          </Link>
-          <Link
-            to="Contact"
-            spy={true}
-            smooth={true}
-            duration={500}
-            className="hover:text-white mx-auto w-1/2 hover:bg-[#EE9F26] rounded-full p-2 cursor-pointer"
+          </NavLink>
+          <NavLink
+            to="/Energiku/contak"
+            className={({ isActive }) =>
+              isActive
+                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
+                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
+            }
             onClick={closeMenu}
           >
             Kontak
-          </Link>
+          </NavLink>
           <button
             className="px-4 py-2 mx-auto w-1/2 border bg-[#EE9F26] hover:bg-white hover:text-black transition-all rounded-full cursor-pointer"
             onClick={() => alert("Login clicked!")}

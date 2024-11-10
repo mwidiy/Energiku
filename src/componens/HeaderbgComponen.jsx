@@ -23,7 +23,7 @@ function HeaderbgComponen() {
             className="text-white px-6 py-2 rounded-full shadow-md hover:opacity-90 transition duration-300 flex items-center gap-2"
             style={{ backgroundColor: "#EE9F26" }}
           >
-            Selanjutnya
+            Selengkapnya
             <FontAwesomeIcon icon={faAngleRight} />
           </button>
         </div>
