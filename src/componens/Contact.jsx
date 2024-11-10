@@ -152,7 +152,7 @@ const Contact = () => {
         </div>
       </div>
       {/* Map Section */}
-      <div className="flex justify-center mb-12 mb-28">
+      <div className="flex justify-center mb-[100px]">
         <div className="relative w-full max-w-7xl">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31655.6732209309!2d109.1411705!3d-6.8970148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb77ae1f5a68b%3A0x3030bfbcaf76020!2sTegal%2C%20Jawa%20Tengah%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1671014443450!5m2!1sen!2sid"
