@@ -110,13 +110,13 @@ const Contact = () => {
                 <input
                   type="text"
                   placeholder="Nama"
-                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-gray-200 text-white"
+                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
                   style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                 />
                 <input
                   type="text"
                   placeholder="No. Telepon"
-                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-gray-200 text-white"
+                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
                   style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                 />
               </div>
@@ -125,20 +125,20 @@ const Contact = () => {
                 <input
                   type="email"
                   placeholder="Alamat Email"
-                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-gray-200 text-white"
+                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
                   style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                 />
                 <input
                   type="text"
                   placeholder="Subjek"
-                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-gray-200 text-white"
+                  className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
                   style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
                 />
               </div>
 
               <textarea
                 placeholder="Komentar"
-                className="w-full p-2 border border-black rounded-md h-24 bg-opacity-0 placeholder-gray-200 text-white"
+                className="w-full p-2 border border-black rounded-md h-24 bg-opacity-0 placeholder-[#EE9F26] text-black"
                 style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
               ></textarea>
               <button
