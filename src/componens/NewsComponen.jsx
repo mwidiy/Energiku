@@ -5,8 +5,21 @@ import Image2 from '../assets/news3.png';
 import Image3 from '../assets/news4.png';
 import Image4 from '../assets/news5.png';
 import Image5 from '../assets/yt-logo.png';
+import { motion } from "framer-motion";
+
+// Variants for animations
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+const slideInFromBottom = {
+  hidden: { y: 50, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
 
 const NewsComponent = () => {
+  // News categories with their respective images and dimensions
   const newsCategories = [
     { id: 1, imageUrl: Image, width: '600px', height: '650px' },
     { id: 2, imageUrl: Image1, width: '600px', height: '300px' },
@@ -15,6 +28,7 @@ const NewsComponent = () => {
     { id: 5, imageUrl: Image4, width: '600px', height: '310px' },
   ];
 
+  // Video sections for educational content
   const videoSections = [
     {
       title: 'Energi Terbarukan',
@@ -42,6 +56,7 @@ const NewsComponent = () => {
     },
   ];
 
+  // Helper function to extract YouTube video ID from URL
   const getVideoId = (url) => {
     const match = url.match(/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
     return match ? match[1] : null;
@@ -49,62 +64,133 @@ const NewsComponent = () => {
 
   return (
     <div className="rounded-lg mx-[150px] mt-[200px]">
-      <h2 className="text-2xl font-semibold mb-4 text-[#EE9F26]">Temukan Berita dan Artikel seputar Bio Energi disini</h2>
-      <p className="text-gray-600 mb-4">
+
+      {/* News Section Header */}
+      <motion.h2
+        className="text-2xl font-semibold mb-4 text-[#EE9F26]"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
+        Temukan Berita dan Artikel seputar Bio Energi disini
+      </motion.h2>
+
+      <motion.p
+        className="text-gray-600 mb-4"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
         Semua Artikel dan Berita Situs Telah Diperbarui Hari Ini dan Anda Dapat Menemukan Artikel dan Berita Anda dengan Cepat dan Tanpa Masalah
-      </p>
-      <div className="grid grid-cols-2 gap-2 justify-items-center">
+      </motion.p>
+
+      {/* News Categories Grid */}
+      <motion.div
+        className="grid grid-cols-2 gap-2 justify-items-center"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
+        {/* First Column */}
         <div className="flex flex-col items-center">
-          {newsCategories.slice(0, 2).map((category) => (
-            <div
+          {newsCategories.slice(0, 2).map((category, index) => (
+            <motion.div
               key={category.id}
               className="hover:opacity-80 rounded-lg p-2 cursor-pointer mb-4"
               style={{ width: category.width, height: category.height }}
+              variants={slideInFromBottom}
+              transition={{ duration: 2, delay: index * 0.3 }}
             >
               <img
                 src={category.imageUrl}
                 alt={`Category ${category.id}`}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
+
+        {/* Second Column */}
         <div className="flex flex-col items-center">
-          {newsCategories.slice(2).map((category) => (
-            <div
+          {newsCategories.slice(2).map((category, index) => (
+            <motion.div
               key={category.id}
               className="hover:opacity-80 rounded-lg p-2 cursor-pointer mb-4"
               style={{ width: category.width, height: category.height }}
+              variants={slideInFromBottom}
+              transition={{ duration: 2, delay: (index + 2) * 0.3 }}
             >
               <img
                 src={category.imageUrl}
                 alt={`Category ${category.id}`}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-      <a
+      </motion.div>
+
+      {/* Link to More */}
+      <motion.a
         href="https://example.com"
         className="mb-4 text-center text-[#EE9F26] cursor-pointer mx-auto block"
-        >
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
         Selengkapnya
-      </a>
+      </motion.a>
 
-
-
+      {/* Educational Video Section */}
       <div className="p-6 max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-2 text-yellow-500">Video Edukasi</h2>
-        <p className="text-gray-600 mb-6">Kumpulan Video yang membahas tentang Bio Energi</p>
+        <motion.h2
+          className="text-3xl font-bold mb-2 text-yellow-500"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 2 }}
+        >
+          Video Edukasi
+        </motion.h2>
+
+        <motion.p
+          className="text-gray-600 mb-6"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 2 }}
+        >
+          Kumpulan Video yang membahas tentang Bio Energi
+        </motion.p>
+
         {videoSections.map((section, index) => (
-          <div key={index} className="mb-8">
-            <h3 className="text-xl font-semibold mb-4">{section.title}</h3>
+          <motion.div
+            key={index}
+            className="mb-8"
+            initial="hidden"
+            animate="visible"
+            variants={fadeIn}
+            transition={{ duration: 2 }}
+          >
+            <motion.h3
+              className="text-xl font-semibold mb-4"
+              variants={slideInFromBottom}
+              transition={{ duration: 2, delay: index * 0.3 }}
+            >
+              {section.title}
+            </motion.h3>
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {section.videos.map((video, index) => (
-                <div
-                  key={index}
+              {section.videos.map((video, videoIndex) => (
+                <motion.div
+                  key={videoIndex}
                   className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer hover:opacity-90 flex flex-col items-center"
+                  variants={slideInFromBottom}
+                  transition={{ duration: 2, delay: (videoIndex + 1) * 0.3 }}
                 >
                   <iframe
                     width="100%"
@@ -116,20 +202,18 @@ const NewsComponent = () => {
                     allowFullScreen
                     className="w-full"
                   ></iframe>
+
                   <div className="p-4 w-full">
                     <p className="text-black mb-2">{video.title}</p>
-                    <img
-                      src={Image5} // Logo YouTube
-                      alt="YouTube logo"
-                      className="w-12 h-12"
-                    />
+                    <img src={Image5} alt="YouTube logo" className="w-12 h-12" />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
+
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import registerImage from '../assets/desain.png';
 import googleIcon from '../assets/google.png';
 import xIcon from '../assets/x.png';
+import { motion } from "framer-motion";
 
 function RegisterPage() {
     const [isAgreed, setIsAgreed] = useState(false);

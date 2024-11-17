@@ -9,7 +9,7 @@ function HeaderbgComponen() {
     <div className="relative">
       {/* Background Image with Gradient Overlay */}
       <div
-        className="bg-cover bg-center p-12 rounded-lg shadow-lg h-[960px]"
+        className="bg-cover bg-center p-12 rounded-lg shadow-lg h-[700px]"
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(238, 159, 38, 0.5), rgba(238, 159, 38, 0.1)), url(${Image})`,
         }}
@@ -72,8 +72,10 @@ function HeaderbgComponen() {
               ease: "easeInOut",
             }}
           >
-            Selengkapnya
-            <FontAwesomeIcon icon={faAngleRight} />
+            <a href="/Energiku/about">
+              Selengkapnya
+              <FontAwesomeIcon icon={faAngleRight} />
+            </a>
           </motion.button>
         </div>
       </div>
