@@ -4,18 +4,45 @@ import registerImage from '../assets/desain.png';
 import googleIcon from '../assets/google.png';
 import xIcon from '../assets/x.png';
 import { motion } from "framer-motion";
+import axios from 'axios';
 
 function RegisterPage() {
     const [isAgreed, setIsAgreed] = useState(false);
     const navigate = useNavigate();
 
     // Fungsi untuk langsung navigasi ke halaman login
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (!isAgreed) {
             alert("Silakan setujui persyaratan dan kebijakan terlebih dahulu.");
             return;
         }
-        navigate('/Energiku/Login'); // Navigasi langsung ke halaman Login
+
+        // Ambil data dari input
+        const nama = document.getElementById('nama').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if (!nama || !email || !password) {
+            alert("Semua field harus diisi!");
+            return;
+        }
+
+        try {
+            // Kirim data ke backend
+            const response = await axios.post('http://localhost:5000/api/register', {
+                nama,
+                email,
+                password,
+            });
+
+            if (response.status === 201) {
+                alert('Registrasi berhasil!');
+                navigate('/Energiku/Login');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Registrasi gagal. Silakan coba lagi.');
+        }
     };
 
     return (
@@ -31,12 +58,12 @@ function RegisterPage() {
 
                     <form>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+                            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="nama">
                                 Nama
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="name"
+                                id="nama"
                                 type="text"
                                 placeholder="Masukkan Nama"
                                 required

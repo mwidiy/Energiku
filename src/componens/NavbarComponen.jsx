@@ -7,8 +7,10 @@ import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
 const NavbarComponen = () => {
   const [menu, setMenu] = useState(false);
   const [scrolling, setScrolling] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false); // State for dropdown menu
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State untuk status login
 
+  // Cek scroll untuk menambahkan efek navbar
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setScrolling(true);
@@ -24,6 +26,12 @@ const NavbarComponen = () => {
     };
   }, []);
 
+  // Cek status login dari LocalStorage
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('isLoggedIn') === 'true';
+    setIsLoggedIn(loginStatus);
+  }, []);
+
   const handleChange = () => {
     setMenu(!menu);
   };
@@ -34,6 +42,15 @@ const NavbarComponen = () => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  // Logout: hapus status dari LocalStorage
+  const handleLogout = () => {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userEmail'); // Opsional
+    setIsLoggedIn(false);
+    setDropdownOpen(false);
+    alert("You have successfully logged out!");
   };
 
   return (
@@ -47,7 +64,7 @@ const NavbarComponen = () => {
           <div className="w-[210px] h-[50px] cursor-pointer">
             <img src={logo} alt="Logo" />
           </div>
-          
+
           <nav className="hidden md:flex gap-x-3 text-lg font-medium">
             <NavLink
               to="/Energiku"
@@ -107,20 +124,40 @@ const NavbarComponen = () => {
             <VscAccount onClick={toggleDropdown} />
             {dropdownOpen && (
               <div className="text-xl absolute right-0 mt-10 w-50 bg-white bg-opacity-50 rounded-lg shadow-lg z-10 p-5 ">
-                <NavLink
-                  to="/Energiku/Login"
-                  className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-t-lg"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Masuk
-                </NavLink>
-                <NavLink
-                  to="/Energiku/Register"
-                  className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-b-lg"
-                  onClick={() => setDropdownOpen(false)}
-                >
-                  Daftar
-                </NavLink>
+                {isLoggedIn ? (
+                  <>
+                    <NavLink
+                      to="/Energiku/Profile"
+                      className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-t-lg"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Detail Profile
+                    </NavLink>
+                    <button
+                      className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-b-lg"
+                      onClick={handleLogout}
+                    >
+                      Keluar
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <NavLink
+                      to="/Energiku/Login"
+                      className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-t-lg"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Masuk
+                    </NavLink>
+                    <NavLink
+                      to="/Energiku/Register"
+                      className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-b-lg"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Daftar
+                    </NavLink>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -133,79 +170,6 @@ const NavbarComponen = () => {
               <AiOutlineMenuUnfold size={25} onClick={handleChange} />
             )}
           </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          className={`${
-            menu ? "translate-x-0" : "-translate-x-full"
-          } lg:hidden flex flex-col absolute bg-black text-white left-0 top-0 font-semibold text-2xl text-center pt-8 pb-4 gap-8 w-full h-fit transition-transform duration-300`}
-        >
-          <div className="absolute top-4 right-4 cursor-pointer">
-            <AiOutlineClose className="text-white" size={25} onClick={closeMenu} />
-          </div>
-          <NavLink
-            to="/Energiku"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
-                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
-            }
-            onClick={closeMenu}
-            end
-          >
-            Beranda
-          </NavLink>
-          <NavLink
-            to="/Energiku/about"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
-                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
-            }
-            onClick={closeMenu}
-          >
-            Tentang Kami
-          </NavLink>
-          <NavLink
-            to="/Energiku/partner"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
-                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
-            }
-            onClick={closeMenu}
-          >
-            Mitra
-          </NavLink>
-          <NavLink
-            to="/Energiku/news"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
-                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
-            }
-            onClick={closeMenu}
-          >
-            Berita & Edukasi
-          </NavLink>
-          <NavLink
-            to="/Energiku/contak"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
-                : "hover:bg-[#EE9F26] hover:text-white rounded-full p-2 cursor-pointer"
-            }
-            onClick={closeMenu}
-          >
-            Kontak
-          </NavLink>
-          <button
-            className="px-4 py-2 mx-auto w-1/2 border bg-[#EE9F26] hover:bg-white hover:text-black transition-all rounded-full cursor-pointer"
-            onClick={() => alert("Login clicked!")}
-          >
-            Login
-          </button>
         </div>
       </div>
     </>

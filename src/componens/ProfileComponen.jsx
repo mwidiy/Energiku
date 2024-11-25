@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import avatar from '../assets/keqing.webp'
 import icon1 from '../assets/ppemail.png'
 import icon2 from '../assets/ppkelamin.png'
@@ -15,17 +16,68 @@ import goPayIcon from '../assets/gopay.png'; // Ganti dengan path ikon GoPay yan
 
 
 function ProfileComponen() {
+
+
+
+  const [profile, setProfile] = useState({
+    fullName: '',
+    email: '',
+  });
+
+  useEffect(() => {
+    // Ambil data dari localStorage
+    const fullName = localStorage.getItem('nama') || 'Guest';
+    const email = localStorage.getItem('email') || 'email@example.com';
+    setProfile((prevProfile) => ({ ...prevProfile, fullName, email }));
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = async () => {
+    setIsEditing(false);
+
+    // Simulasi penyimpanan data ke server
+    try {
+      const response = await fetch(`http://localhost:5000/api/books/${localStorage.getItem('id')}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(profile),
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal menyimpan data');
+      }
+
+      console.log('Data berhasil disimpan');
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+
   return (
     <div className="bg-[#D9D9D9] p-6 min-h-screen w-full flex flex-col items-center mt-24">
       <div className="w-full max-w-5xl">
 
-        <h1 className="text-2xl font-bold mb-4 text-center">Detail Profil</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Detail Profile</h1>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="md:col-span-1 bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
             <img src={avatar} alt="Profile" className="w-16 h-16 rounded-full mb-4" />
             <div className="text-center">
-              <div className="text-xl font-bold">Nurul Putri</div>
+              <div className="text-xl font-bold">{profile.fullName}</div>
               <div className="text-gray-600">Petani Bawang</div>
             </div>
           </div>
@@ -34,7 +86,7 @@ function ProfileComponen() {
             <div>
                 <div className="flex justify-between mb-2">
                 <strong>Nama Lengkap:</strong>
-                <span>Nurul Putri</span>
+                <span>{profile.fullName}</span>
                 </div>
                 <hr className="my-2 border-gray-300" />
                 <div className="flex justify-between mb-2">
@@ -66,7 +118,7 @@ function ProfileComponen() {
                     <img src={icon1} alt="Email Icon" className="w-5 h-5 mr-2" />
                     <div>
                     <strong>Email:</strong>
-                    <span className="ml-3">nu***23@gmail.com</span>
+                    <span className="ml-3">{profile.email}</span>
                     </div>
                 </div>
 
