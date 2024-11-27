@@ -139,7 +139,7 @@ const NewsComponent = () => {
 
       {/* Link to More */}
       <motion.a
-        href="/Energiku/detailnews2"
+        href="/Energiku/allnews"
         className="mb-4 text-center text-[#EE9F26] cursor-pointer mx-auto block"
         initial="hidden"
         animate="visible"
