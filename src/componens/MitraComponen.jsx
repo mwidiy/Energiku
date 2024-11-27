@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Image from '../assets/bgmitra.png';
-import Image1 from '../assets/mitra.png';
+import Image1 from '../assets/mitra3.png';
 import Image2 from '../assets/ptsemen.png';
 import Image3 from '../assets/joinimg.png';
 import Image4 from '../assets/panah.png';
