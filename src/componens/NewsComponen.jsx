@@ -105,13 +105,13 @@ const NewsComponent = () => {
               variants={slideInFromBottom}
               transition={{ duration: 2, delay: index * 0.3 }}
             >
-              <a href={category.link}>
+              <NavLink href={category.link}>
                 <img
                   src={category.imageUrl}
                   alt={`Category ${category.id}`}
                   className="w-full h-full object-cover"
                 />
-              </a>
+              </NavLink>
             </motion.div>
           ))}
         </div>
@@ -139,16 +139,17 @@ const NewsComponent = () => {
       </motion.div>
 
       {/* Link to More */}
-      <motion.NavLink
-        to="/Energiku/allnews"
+      <motion.div
         className="mb-4 text-center text-[#EE9F26] cursor-pointer mx-auto block"
         initial="hidden"
         animate="visible"
         variants={fadeIn}
         transition={{ duration: 2 }}
       >
-        Selengkapnya
-      </motion.NavLink>
+        <NavLink to="/Energiku/allnews">
+          Selengkapnya
+        </NavLink>
+      </motion.div>
 
       {/* Educational Video Section */}
       <div className="p-6 max-w-7xl mx-auto">
