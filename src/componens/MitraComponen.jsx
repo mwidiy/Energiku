@@ -12,6 +12,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
+import { NavLink } from 'react-router-dom';
 
 // Animation Variants
 const fadeIn = {
@@ -86,7 +87,7 @@ const MitraComponent = () => {
           variants={fadeIn}
           transition={{ duration: 2 }}
         >
-          <a href="/Energiku/detailpartner">
+          <NavLink to="/Energiku/detailpartner">
           {/* Content Row */}
           <motion.div
             className="flex flex-col md:flex-row justify-between items-center"
@@ -116,7 +117,7 @@ const MitraComponent = () => {
 
           {/* Arrow Image */}
           <img className="panah" src={Image4} alt="panah" />
-          </a>
+          </NavLink>
         </motion.div>
         
 

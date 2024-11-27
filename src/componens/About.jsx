@@ -2,6 +2,7 @@ import React from "react";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import { NavLink } from 'react-router-dom';
 
 // Assets
 import Image0 from "../assets/about0.png";
@@ -182,8 +183,8 @@ const About = () => {
 
         {/* Call to Action Button */}
         <div className="flex justify-center mt-10">
-          <a 
-            href="/Energiku/detailabout">
+          <NavLink 
+            to="/Energiku/detailabout">
             <button
               className="text-white px-5 py-2 rounded-full shadow-lg hover:opacity-90 transition duration-300 flex items-center gap-2 mb-28"
               style={{ backgroundColor: "#EE9F26" }}
@@ -191,7 +192,7 @@ const About = () => {
               Selengkapnya
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
-          </a>
+          </NavLink>
         </div>
 
         {/* Team Section */}

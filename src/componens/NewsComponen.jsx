@@ -6,6 +6,7 @@ import Image3 from '../assets/news4.png';
 import Image4 from '../assets/news5.png';
 import Image5 from '../assets/yt-logo.png';
 import { motion } from "framer-motion";
+import { NavLink } from 'react-router-dom';
 
 // Variants for animations
 const fadeIn = {
@@ -125,21 +126,21 @@ const NewsComponent = () => {
               variants={slideInFromBottom}
               transition={{ duration: 2, delay: (index + 2) * 0.3 }}
             >
-              <a href={category.link}>
+              <NavLink to={category.link}>
                 <img
                   src={category.imageUrl}
                   alt={`Category ${category.id}`}
                   className="w-full h-full object-cover"
                 />
-              </a>
+              </NavLink>
             </motion.div>
           ))}
         </div>
       </motion.div>
 
       {/* Link to More */}
-      <motion.a
-        href="/Energiku/allnews"
+      <motion.NavLink
+        to="/Energiku/allnews"
         className="mb-4 text-center text-[#EE9F26] cursor-pointer mx-auto block"
         initial="hidden"
         animate="visible"
@@ -147,7 +148,7 @@ const NewsComponent = () => {
         transition={{ duration: 2 }}
       >
         Selengkapnya
-      </motion.a>
+      </motion.NavLink>
 
       {/* Educational Video Section */}
       <div className="p-6 max-w-7xl mx-auto">

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Image from "../assets/home1.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from 'react-router-dom';
 
 function HeaderbgComponen() {
   return (
@@ -72,10 +73,10 @@ function HeaderbgComponen() {
               ease: "easeInOut",
             }}
           >
-            <a href="/Energiku/detail">
+            <NavLink to="/Energiku/detail">
               Selengkapnya
               <FontAwesomeIcon icon={faAngleRight} />
-            </a>
+            </NavLink>
           </motion.button>
         </div>
       </div>
