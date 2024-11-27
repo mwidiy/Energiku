@@ -182,13 +182,16 @@ const About = () => {
 
         {/* Call to Action Button */}
         <div className="flex justify-center mt-10">
-          <button
-            className="text-white px-5 py-2 rounded-full shadow-lg hover:opacity-90 transition duration-300 flex items-center gap-2 mb-28"
-            style={{ backgroundColor: "#EE9F26" }}
-          >
-            Selengkapnya
-            <FontAwesomeIcon icon={faArrowRight} />
-          </button>
+          <a 
+            href="/Energiku/detailabout">
+            <button
+              className="text-white px-5 py-2 rounded-full shadow-lg hover:opacity-90 transition duration-300 flex items-center gap-2 mb-28"
+              style={{ backgroundColor: "#EE9F26" }}
+            >
+              Selengkapnya
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </a>
         </div>
 
         {/* Team Section */}

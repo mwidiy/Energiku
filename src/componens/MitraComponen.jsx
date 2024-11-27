@@ -86,6 +86,7 @@ const MitraComponent = () => {
           variants={fadeIn}
           transition={{ duration: 2 }}
         >
+          <a href="/Energiku/detailpartner">
           {/* Content Row */}
           <motion.div
             className="flex flex-col md:flex-row justify-between items-center"
@@ -115,7 +116,9 @@ const MitraComponent = () => {
 
           {/* Arrow Image */}
           <img className="panah" src={Image4} alt="panah" />
+          </a>
         </motion.div>
+        
 
         {/* Slider Section */}
         <motion.div

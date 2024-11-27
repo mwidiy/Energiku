@@ -72,7 +72,7 @@ function HeaderbgComponen() {
               ease: "easeInOut",
             }}
           >
-            <a href="/Energiku/about">
+            <a href="/Energiku/detail">
               Selengkapnya
               <FontAwesomeIcon icon={faAngleRight} />
             </a>

@@ -87,6 +87,49 @@
     background: transparent !important;
     border: none !important;
   }
+
+
+
+  /* form koin penukaran */
+  .custom-select option {
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .custom-select option[data-icon] {
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 24px 24px;
+    padding-left: 32px;
+  }
+  
+  .custom-select option[value="bni"] {
+    background-image: url('../assets/bni.png');
+  }
+  
+  .custom-select option[value="bca"] {
+    background-image: url('../assets/bca.png');
+  }
+  
+  .custom-select option[value="shopeePay"] {
+    background-image: url('../assets/shope.png');
+  }
+  
+  .custom-select option[value="ovo"] {
+    background-image: url('../assets/ovo.png');
+  }
+  
+  .custom-select option[value="linkAja"] {
+    background-image: url('../assets/linkaja.png');
+  }
+  
+  .custom-select option[value="dana"] {
+    background-image: url('../assets/dana.png');
+  }
+  
+  .custom-select option[value="goPay"] {
+    background-image: url('../assets/gopay.png');
+  }
   
   
   

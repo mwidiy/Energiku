@@ -21,11 +21,11 @@ const slideInFromBottom = {
 const NewsComponent = () => {
   // News categories with their respective images and dimensions
   const newsCategories = [
-    { id: 1, imageUrl: Image, width: '600px', height: '650px' },
-    { id: 2, imageUrl: Image1, width: '600px', height: '300px' },
-    { id: 3, imageUrl: Image2, width: '600px', height: '315px' },
-    { id: 4, imageUrl: Image3, width: '600px', height: '310px' },
-    { id: 5, imageUrl: Image4, width: '600px', height: '310px' },
+    { id: 1, imageUrl: Image, width: '600px', height: '650px', link: '/Energiku/detailnews2' },
+    { id: 2, imageUrl: Image1, width: '600px', height: '300px', link: '/Energiku/detailnews' },
+    { id: 3, imageUrl: Image2, width: '600px', height: '315px', link: '/Energiku/detailnews3' },
+    { id: 4, imageUrl: Image3, width: '600px', height: '310px', link: '/Energiku/detailnews4' },
+    { id: 5, imageUrl: Image4, width: '600px', height: '310px', link: '/Energiku/detailnews5' },
   ];
 
   // Video sections for educational content
@@ -104,11 +104,13 @@ const NewsComponent = () => {
               variants={slideInFromBottom}
               transition={{ duration: 2, delay: index * 0.3 }}
             >
-              <img
-                src={category.imageUrl}
-                alt={`Category ${category.id}`}
-                className="w-full h-full object-cover"
-              />
+              <a href={category.link}>
+                <img
+                  src={category.imageUrl}
+                  alt={`Category ${category.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </a>
             </motion.div>
           ))}
         </div>
@@ -123,11 +125,13 @@ const NewsComponent = () => {
               variants={slideInFromBottom}
               transition={{ duration: 2, delay: (index + 2) * 0.3 }}
             >
-              <img
-                src={category.imageUrl}
-                alt={`Category ${category.id}`}
-                className="w-full h-full object-cover"
-              />
+              <a href={category.link}>
+                <img
+                  src={category.imageUrl}
+                  alt={`Category ${category.id}`}
+                  className="w-full h-full object-cover"
+                />
+              </a>
             </motion.div>
           ))}
         </div>

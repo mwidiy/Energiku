@@ -27,7 +27,8 @@ function Loginpage() {
         localStorage.setItem('nama',response.data.user.nama);
         localStorage.setItem('email',response.data.user.email); // Ganti dengan field email dari API
         localStorage.setItem('id',response.data.user.idlogin_user); // Ganti dengan field email dari API
-        console.log(response.data.user)
+        localStorage.setItem('password',response.data.user.password); // Ganti dengan field email dari API
+        console.log('idlogin_user',response.data.user.password);
         
       }
     } catch (error) {
