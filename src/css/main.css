@@ -134,4 +134,141 @@
   
   
   
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  
+  .animate-blink {
+    animation: blink 1s infinite; /* Durasi animasi 1 detik */
+  }
+
+
+
+
+  
+.slick-prev,
+.slick-next {
+  background-color: black !important;
+  border-radius: 50%;
+  color: white !important;
+  opacity: 1 !important;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: white;
+  font-size: 16px;
+}
+
+.slick-dots {
+  color: #EE9F26; /* Change active dot color to match theme */
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 768px) {
+  .slick-prev,
+  .slick-next {
+    width: 25px;
+    height: 25px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 12px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 8px; /* Smaller dots for mobile */
+  }
+
+  .slick-dots {
+    bottom: -10px; /* Adjust dot positioning for smaller screens */
+  }
+}
+
+/* Font adjustments for mobile */
+.font-la-belle-aurore {
+  font-family: 'La Belle Aurore', cursive;
+  font-size: 14px; /* Reduce font size for mobile */
+}
+
+
+/* Media queries untuk tampilan mobile */
+@media (max-width: 768px) {
+  .max-w-screen-lg {
+    max-width: 100%;
+  }
+  .mx-auto {
+    margin-left: 0px;
+    margin-right: 0;
+  }
+  .p-6 {
+    padding:  10px;
+  }
+  .my-\[200px\] {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .w-\[400px\] {
+    width: 100%;
+  }
+  .h-1 {
+    height: 0.5rem;
+  }
+  .mt-\[px\] {
+    margin-top: -6%;
+  }
+  .text-2xl {
+    font-size: 1rem;
+  }
+  .font-bold {
+    font-weight: bold;
+  }
+  .mt-\[70px\] {
+    margin-top: 50px;
+  }
+  .mb-\[100px\] {
+    margin-bottom: 50px;
+  }
+  .shadow-lg {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .h-\[600px\] {
+    height: 400px;
+  }
+  .object-cover {
+    object-fit: cover;
+  }
+  .w-\[200px\] {
+    width: 100%;
+  }
+  .ml-\[-100px\] {
+    margin-left: 0;
+  }
+  .mt-\[-450px\] {
+    margin-top: -350px;
+  }
+
+
+}
+
   

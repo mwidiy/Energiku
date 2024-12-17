@@ -31,12 +31,12 @@ function App() {
       <Route path="/Energiku/partner" Component={Partnerpage}/>
       <Route path="/Energiku/detailpartner" Component={Detailmitra}/>
       <Route path="/Energiku/news" Component={Newspage}/>
-      <Route path="/Energiku/allnews" Component={Semuaberita}/>
-      <Route path="/Energiku/detailnews" Component={DetailBerita}/>
-      <Route path="/Energiku/detailnews2" Component={DetailBerita2}/>
-      <Route path="/Energiku/detailnews3" Component={DetailBerita3}/>
-      <Route path="/Energiku/detailnews4" Component={DetailBerita4}/>
-      <Route path="/Energiku/detailnews5" Component={DetailBerita5}/>
+      <Route path="/Energiku/semuaberita" Component={Semuaberita}/>
+      <Route path="/Energiku/Detailberita" Component={DetailBerita}/>
+      <Route path="/Energiku/Detailberita2" Component={DetailBerita2}/>
+      <Route path="/Energiku/Detailberita3" Component={DetailBerita3}/>
+      <Route path="/Energiku/Detailberita4" Component={DetailBerita4}/>
+      <Route path="/Energiku/Detailberita5" Component={DetailBerita5}/>
       <Route path="/Energiku/contak" Component={Contakpage}/>
       <Route path="/Energiku/profile" Component={Profilepage}/>
       <Route path="/Energiku/Register" Component={Registerpage}/>

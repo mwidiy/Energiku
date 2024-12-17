@@ -14,7 +14,7 @@ function Detailmitra() {
         {/* Button Back */}
         <button
           onClick={() => navigate(-1)}
-          className="absolute top-2 left-2 text-[#EE9F26] text-3xl hover:text-[#e57d2b] transition duration-300"
+          className="absolute top-2 left-32 text-[#EE9F26] text-3xl hover:text-[#e57d2b] transition duration-300"
         >
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>

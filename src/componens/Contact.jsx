@@ -26,9 +26,7 @@ const slideInFromRight = {
   visible: { x: 0, opacity: 1 },
 };
 
-
 const Contact = () => {
-  
   return (
     <div>
       {/* Background Image with Gradient Overlay */}
@@ -48,193 +46,183 @@ const Contact = () => {
       </div>
 
       {/* Contact Information Section */}
-      <motion.div 
-  className="flex justify-center space-x-14 mb-12" 
-  initial="hidden" 
-  animate="visible" 
-  variants={fadeIn} 
-  transition={{ duration: 2 }}
->
-  {/* Email Section */}
-  <motion.div 
-    className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-96 relative pb-1" 
-    variants={slideInFromBottom} 
-    transition={{ duration: 2, delay: 0.3 }}
-  >
-    <div className="flex items-center mb-5 w-[150px] h-[80px] p-0 rounded-lg">
-      <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
-        <FaEnvelope className="text-3xl text-white" />
-      </div>
-      <h4 className="text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-[-70px] after:right-[-190px] after:bottom-[-25px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
-        Email
-      </h4>
-    </div>
-    <div className="mt-auto text-left space-y-1">
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        info@kaligrafi.com
-      </p>
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        anggi.budiyanto@gmail.com
-      </p>
-    </div>
-    <div className="absolute bottom-2 right-2">
-      <div className="rounded-full flex items-center justify-center">
-        <img src={Image5} alt="Arrow Icon" className="w-8 h-8 text-white" style={{ fill: "white" }} />
-      </div>
-    </div>
-  </motion.div>
+      <motion.div
+        className="flex flex-col sm:flex-row justify-center sm:space-x-14 space-y-6 sm:space-y-0 mb-12 px-4"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
+        {/* Email Section */}
+        <motion.div
+          className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-full sm:w-96 relative"
+          variants={slideInFromBottom}
+          transition={{ duration: 2, delay: 0.3 }}
+        >
+          <div className="flex items-center mb-5">
+            <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
+              <FaEnvelope className="text-2xl sm:text-3xl text-white" />
+            </div>
+            <h4 className="text-md sm:text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-[-10px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
+              Email
+            </h4>
+          </div>
+          <div className="text-sm sm:text-base space-y-2">
+            <p>info@kaligrafi.com</p>
+            <p>anggi.budiyanto@gmail.com</p>
+          </div>
+          <div className="absolute bottom-2 right-2">
+            <img
+              src={Image5}
+              alt="Arrow Icon"
+              className="w-6 sm:w-8 h-6 sm:h-8"
+            />
+          </div>
+        </motion.div>
 
-  {/* Phone Section */}
-  <motion.div 
-    className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-96 relative pb-1" 
-    variants={slideInFromBottom} 
-    transition={{ duration: 2, delay: 0.6 }}
-  >
-    <div className="flex items-center mb-5 w-[150px] h-[80px] p-0 rounded-lg">
-      <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
-        <FaPhone className="text-3xl text-white" />
-      </div>
-      <h4 className="text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-[-70px] after:right-[-190px] after:bottom-[-25px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
-        Telepon
-      </h4>
-    </div>
-    <div className="mt-auto text-left space-y-1">
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        0853 xxxx xxxx
-      </p>
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        0812 xxxx xxxx
-      </p>
-    </div>
-    <div className="absolute bottom-2 right-2">
-      <div className="rounded-full flex items-center justify-center">
-        <img src={Image5} alt="Arrow Icon" className="w-8 h-8 text-white" style={{ fill: "white" }} />
-      </div>
-    </div>
-  </motion.div>
+        {/* Phone Section */}
+        <motion.div
+          className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-full sm:w-96 relative"
+          variants={slideInFromBottom}
+          transition={{ duration: 2, delay: 0.6 }}
+        >
+          <div className="flex items-center mb-5">
+            <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
+              <FaPhone className="text-2xl sm:text-3xl text-white" />
+            </div>
+            <h4 className="text-md sm:text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-[-10px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
+              Telepon
+            </h4>
+          </div>
+          <div className="text-sm sm:text-base space-y-2">
+            <p>0853 xxxx xxxx</p>
+            <p>0812 xxxx xxxx</p>
+          </div>
+          <div className="absolute bottom-2 right-2">
+            <img
+              src={Image5}
+              alt="Arrow Icon"
+              className="w-6 sm:w-8 h-6 sm:h-8"
+            />
+          </div>
+        </motion.div>
 
-  {/* Location Section */}
-  <motion.div 
-    className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-96 relative pb-1" 
-    variants={slideInFromBottom} 
-    transition={{ duration: 2, delay: 0.9 }}
-  >
-    <div className="flex items-center mb-5 w-[150px] h-[80px] p-0 rounded-lg">
-      <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
-        <FaMapMarkerAlt className="text-3xl text-white" />
-      </div>
-      <h4 className="text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-[-70px] after:right-[-190px] after:bottom-[-25px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
-        Lokasi
-      </h4>
-    </div>
-    <div className="mt-auto text-left space-y-1">
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        Jawa Tengah
-      </p>
-      <p className="relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-0 after:h-[1px] after:bg-gray-400">
-        Indonesia
-      </p>
-    </div>
-    <div className="absolute bottom-2 right-2">
-      <div className="rounded-full flex items-center justify-center">
-        <img src={Image5} alt="Arrow Icon" className="w-8 h-8 text-white" style={{ fill: "white" }} />
-      </div>
-    </div>
-  </motion.div>
-</motion.div>
-
+        {/* Location Section */}
+        <motion.div
+          className="flex flex-col p-6 bg-[#FAF0E6] rounded-lg shadow-md w-full sm:w-96 relative"
+          variants={slideInFromBottom}
+          transition={{ duration: 2, delay: 0.9 }}
+        >
+          <div className="flex items-center mb-5">
+            <div className="bg-[#EE9F26] p-3 rounded-full flex items-center justify-center">
+              <FaMapMarkerAlt className="text-2xl sm:text-3xl text-white" />
+            </div>
+            <h4 className="text-md sm:text-lg font-semibold ml-4 relative pb-1 after:absolute after:left-0 after:right-0 after:bottom-[-10px] after:h-[2px] after:bg-[#BEB3B3] after:content-['']">
+              Lokasi
+            </h4>
+          </div>
+          <div className="text-sm sm:text-base space-y-2">
+            <p>Jawa Tengah</p>
+            <p>Indonesia</p>
+          </div>
+          <div className="absolute bottom-2 right-2">
+            <img
+              src={Image5}
+              alt="Arrow Icon"
+              className="w-6 sm:w-8 h-6 sm:h-8"
+            />
+          </div>
+        </motion.div>
+      </motion.div>
 
       {/* Question Form Section */}
       <motion.div
-  className="flex justify-center mb-28 mt-28"
-  initial="hidden"
-  animate="visible"
-  variants={fadeIn}
-  transition={{ duration: 2 }}
->
-  <motion.div
-    className="relative w-[1100px] h-[500px] bg-cover bg-center rounded-lg shadow-lg p-8 flex"
-    style={{
-      backgroundImage: `url(${Image4})`, // Setting Image4 as the background
-    }}
-    initial="hidden"
-    animate="visible"
-    variants={fadeIn}
-    transition={{ duration: 2 }}
-  >
-    {/* Image Section */}
-    <motion.div
-      className="w-1/3"
-      variants={slideInFromLeft}
-      transition={{ duration: 2 }}
-    >
-      <img
-        src={Image1}
-        alt="Farmer"
-        className="w-full h-full object-cover rounded-l-lg"
-      />
-    </motion.div>
-
-    {/* Form Section */}
-    <motion.div
-      className="flex-grow p-8 bg-[#FFFFFF] bg-opacity-50 rounded-r-lg"
-      variants={slideInFromRight}
-      transition={{ duration: 2 }}
-    >
-      <h4 className="text-xl font-semibold mb-4">
-        Apakah Kamu Mempunyai Pertanyaan?
-      </h4>
-      <form className="space-y-4">
-        {/* Nama dan No. Telepon */}
-        <div className="grid grid-cols-2 gap-4">
-          <input
-            type="text"
-            placeholder="Nama"
-            className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-          />
-          <input
-            type="text"
-            placeholder="No. Telepon"
-            className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-          />
-        </div>
-
-        {/* Email dan Subjek */}
-        <div className="grid grid-cols-2 gap-4">
-          <input
-            type="email"
-            placeholder="Alamat Email"
-            className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-          />
-          <input
-            type="text"
-            placeholder="Subjek"
-            className="w-full p-2 border border-black rounded-md bg-opacity-0 placeholder-[#EE9F26] text-black"
-            style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-          />
-        </div>
-
-        {/* Komentar */}
-        <textarea
-          placeholder="Komentar"
-          className="w-full p-2 border border-black rounded-md h-24 bg-opacity-0 placeholder-[#EE9F26] text-black"
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
-        ></textarea>
-
-        {/* Button */}
-        <button
-          type="submit"
-          className="w-[140px] py-2 bg-[#EE9F26] text-white font-semibold rounded-md"
+        className="flex justify-center mb-28 mt-28"
+        initial="hidden"
+        animate="visible"
+        variants={fadeIn}
+        transition={{ duration: 2 }}
+      >
+        <motion.div
+          className="relative w-full sm:w-[1100px] h-[500px] bg-cover bg-center rounded-lg shadow-lg p-8 flex"
+          style={{
+            backgroundImage: `url(${Image4})`, // Setting Image4 as the background
+          }}
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+          transition={{ duration: 2 }}
         >
-          Kirim Pesan
-        </button>
-      </form>
-    </motion.div>
-  </motion.div>
-</motion.div>
+          {/* Image Section */}
+          <motion.div
+            className="w-full sm:w-1/3"
+            variants={slideInFromLeft}
+            transition={{ duration: 2 }}
+          >
+            <img
+              src={Image1}
+              alt="Farmer"
+              className="w-full h-full object-cover rounded-l-lg"
+            />
+          </motion.div>
+
+          {/* Form Section */}
+          <motion.div
+            className="flex-grow p-4 sm:p-8 bg-[#FFFFFF] bg-opacity-50 rounded-lg sm:rounded-r-lg"
+            variants={slideInFromRight}
+            transition={{ duration: 2 }}
+          >
+            <h4 className="text-base sm:text-xl font-semibold mb-3 sm:mb-4 text-center sm:text-left">
+              Apakah Kamu Mempunyai Pertanyaan?
+            </h4>
+            <form className="space-y-3 sm:space-y-4">
+              {/* Nama dan No. Telepon */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <input
+                  type="text"
+                  placeholder="Nama"
+                  className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
+                />
+                <input
+                  type="text"
+                  placeholder="No. Telepon"
+                  className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
+                />
+              </div>
+
+              {/* Email dan Subjek */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <input
+                  type="email"
+                  placeholder="Alamat Email"
+                  className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
+                />
+                <input
+                  type="text"
+                  placeholder="Subjek"
+                  className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
+                />
+              </div>
+
+              {/* Komentar */}
+              <textarea
+                placeholder="Komentar"
+                className="w-full p-2 sm:p-3 border border-black rounded-md h-20 sm:h-24 placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
+              ></textarea>
+
+              {/* Button */}
+              <div className="flex justify-center sm:justify-start">
+                <button
+                  type="submit"
+                  className="w-full max-w-[140px] py-2 sm:py-2 bg-[#EE9F26] text-white font-semibold rounded-md text-sm sm:text-base text-center"
+                >
+                  Kirim Pesan
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
       {/* Map Section */}
       <div className="flex justify-center mb-[100px]">

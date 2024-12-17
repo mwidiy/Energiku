@@ -53,6 +53,58 @@ const NavbarComponen = () => {
     alert("You have successfully logged out!");
   };
 
+  const [profile, setProfile] = useState({
+    nama: '',
+    email: '',
+    pekerjaan: '',
+    noHp: '',
+    alamat: '',
+    jeniskelamin: '',
+    tanggalLahir: '',
+    poin: ''
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = localStorage.getItem('id');
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfile((prevProfile) => ({
+            ...prevProfile,
+            ...data,
+            avatar: data.gambar
+              ? `http://localhost:5000/asset/${data.gambar}`
+              : avatarPlaceholder,
+          }));
+        } else {
+          console.error('Gagal memuat data pengguna');
+        }
+      } catch (error) {
+        console.error('Kesalahan saat memuat data:', error);
+      }
+    };
+
+    const fetchTransactions = async () => {
+      const userId = localStorage.getItem('id');
+      try {
+        const response = await fetch(`http://localhost:5000/api/transactions/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTransactions(data.data); // Akses ke properti data
+        } else {
+          console.error('Gagal memuat riwayat transaksi');
+        }
+      } catch (error) {
+        console.error('Kesalahan saat memuat riwayat transaksi:', error);
+      }
+    };
+
+    fetchData();
+    fetchTransactions();
+  }, []);
+
   return (
     <>
       <div className="absolute w-full z-10">
@@ -121,7 +173,12 @@ const NavbarComponen = () => {
 
           {/* Profile Icon with Dropdown */}
           <div className="relative text-[35px] hover:text-[#EE9F26] hidden lg:flex cursor-pointer ">
-            <VscAccount onClick={toggleDropdown} />
+          <img
+            src={profile.avatar || '/default-avatar.png'}
+            alt="Profile"
+            onClick={toggleDropdown}
+            className="w-[35px] h-[35px] rounded-full cursor-pointer"
+          />
             {dropdownOpen && (
               <div className="text-xl absolute right-0 mt-10 w-50 bg-white bg-opacity-50 rounded-lg shadow-lg z-10 p-5 ">
                 {isLoggedIn ? (

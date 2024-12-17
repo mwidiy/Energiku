@@ -3,13 +3,18 @@ import ProfileComponen from '../componens/ProfileComponen'
 import Navbar from '../componens/NavbarComponen';
 import Footer from '../componens/FooterComponen'
 import Tes from '../componens/Tes'
+import Tes2 from '../componens/Tes2'
+import Tes3 from '../componens/Tes3'
+import Tes4 from '../componens/Tes4'
+
 
 
 function Profilepage() {
   return (
     <div>
       <Navbar />
-      <ProfileComponen />
+      {/* <Tes4 /> */}
+      <Tes2 />
       {/* <Tes /> */}
       <Footer />
     </div>

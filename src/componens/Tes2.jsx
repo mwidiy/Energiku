@@ -14,6 +14,11 @@ import linkAjaIcon from '../assets/linkaja.png';
 import danaIcon from '../assets/dana.png';
 import goPayIcon from '../assets/gopay.png';
 
+import Tes from './Tes3';
+
+
+  
+
 function ProfileComponen() {
   const [profile, setProfile] = useState({
     nama: '',
@@ -27,6 +32,7 @@ function ProfileComponen() {
   });
   const [isEditing, setIsEditing] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [transactions, setTransactions] = useState([]); // State untuk riwayat transaksi
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +55,24 @@ function ProfileComponen() {
         console.error('Kesalahan saat memuat data:', error);
       }
     };
+
+    const fetchTransactions = async () => {
+      const userId = localStorage.getItem('id');
+      try {
+        const response = await fetch(`http://localhost:5000/api/transactions/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTransactions(data.data); // Akses ke properti data
+        } else {
+          console.error('Gagal memuat riwayat transaksi');
+        }
+      } catch (error) {
+        console.error('Kesalahan saat memuat riwayat transaksi:', error);
+      }
+    };
+
     fetchData();
+    fetchTransactions();
   }, []);
 
   const handleInputChange = (e) => {
@@ -126,9 +149,80 @@ function ProfileComponen() {
     setIsModalOpen(false); // Menutup modal
   };
 
-  // logika poin
-  let poin = profile.poin;
-  let nilaiRupiah = poin * 1000;
+
+
+  const handleTransaction = async (amount) => {
+    if (amount > profile.poin) {
+      alert('Poin tidak cukup untuk melakukan transaksi.');
+      return;
+    }
+  
+    const updatedPoin = profile.poin - amount;
+  
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/users/${localStorage.getItem('id')}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ poin: updatedPoin }),
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error('Gagal mengupdate poin pengguna');
+      }
+  
+      // Jika berhasil, perbarui state profile
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        poin: updatedPoin,
+      }));
+  
+      alert(`Transaksi berhasil! Poin Anda sekarang: ${updatedPoin}`);
+    } catch (error) {
+      console.error('Kesalahan saat melakukan transaksi:', error);
+      alert('Terjadi kesalahan saat melakukan transaksi.');
+    }
+  };
+
+    // logika poin
+    let poin = profile.poin;
+    let nilaiRupiah = poin * 1000;
+    console.log(profile.poin)
+
+     // Refresh poin setiap detik
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const fetchPoin = async () => {
+        const userId = localStorage.getItem('id');
+        try {
+          const response = await fetch(`http://localhost:5000/api/users/${userId}`);
+          if (response.ok) {
+            const data = await response.json();
+            setProfile((prevProfile) => ({
+              ...prevProfile,
+              poin: data.poin,
+            }));
+            setNilaiRupiah(data.poin * 1000); // Perbarui nilai konversi Rupiah
+          } else {
+            console.error('Gagal memuat poin');
+          }
+        } catch (error) {
+          console.error('Kesalahan saat memuat poin:', error);
+        }
+      };
+      fetchPoin();
+    }, 1000);
+
+    return () => clearInterval(interval); // Membersihkan interval saat komponen dilepas
+  }, []);
+
+
+
+
+
+
 
 
   return (
@@ -326,17 +420,29 @@ function ProfileComponen() {
                 <tr>
                   <th className="px-2 py-2">ID</th>
                   <th className="px-2 py-2">Waktu</th>
-                  <th className="px-2 py-2">Jumlah</th>
                   <th className="px-2 py-2">Poin</th>
+                  <th className="px-2 py-2">Hasil</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className="px-4 py-2">1B3</td>
-                  <td className="px-4 py-2">26-11-2024 19:11:12</td>
-                  <td className="px-4 py-2">1000 kg</td>
-                  <td className="px-4 py-2">1000</td>
-                </tr>
+                 {transactions.length > 0 ? (
+                  transactions.map((transaction) => (
+                    <tr key={transaction.id}>
+                      <td className="px-2 py-2 border">{transaction.id}</td>
+                      <td className="px-2 py-2 border">
+                        {new Date(transaction.transaction_time).toLocaleString()}
+                      </td>
+                      <td className="px-2 py-2 border">{transaction.amount}</td>
+                      <td className="px-2 py-2 border">{transaction.transaction_status}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="px-4 py-2 border text-center" colSpan="4">
+                      Tidak ada riwayat transaksi
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -354,7 +460,7 @@ function ProfileComponen() {
           </div>
         </div>
 
-        <CoinTradeComponen />
+        <Tes />
 
         {/* Exchange Section */}
         <div className="mt-8 bg-gray-100 p-10 max-w-6xl w-full rounded-lg mb-20">
@@ -371,9 +477,11 @@ function ProfileComponen() {
             <img src={goPayIcon} alt="GoPay" className="w-26 h-16 mx-auto" />
           </div>
         </div>
+
       </div>
     </div>
   );
 }
 
 export default ProfileComponen;
+
