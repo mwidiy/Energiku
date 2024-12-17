@@ -6,6 +6,7 @@ import Tes from '../componens/Tes'
 import Tes2 from '../componens/Tes2'
 import Tes3 from '../componens/Tes3'
 import Tes4 from '../componens/Tes4'
+import TesHome from '../componens/TesHome';
 
 
 
@@ -15,7 +16,8 @@ function Profilepage() {
       <Navbar />
       {/* <Tes4 /> */}
       <Tes2 />
-      {/* <Tes /> */}
+      {/* <TesHome /> */}
+      {/* <Tes3 /> */}
       <Footer />
     </div>
   )

@@ -1,90 +1,230 @@
-import React from "react";
-import { motion } from "framer-motion";
-import Image from "../assets/home1.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Tambahkan axios untuk HTTP request
+import bniIcon from '../assets/bni.png';
+import bcaIcon from '../assets/bca.png';
+import shopeePayIcon from '../assets/shope.png';
+import ovoIcon from '../assets/ovo.png';
+import linkAjaIcon from '../assets/linkaja.png';
+import danaIcon from '../assets/dana.png';
+import goPayIcon from '../assets/gopay.png';
+import Image from "../assets/maskot4.png"; // Gambar maskot error
+import Image1 from "../assets/maskot1.png"; // Gambar maskot error
+import successImage from "../assets/maskot1.png"; // Gambar maskot sukses
 
-function HeaderbgComponen() {
+const paymentMethods = [
+  { id: 'bni', label: 'BNI', icon: bniIcon },
+  { id: 'bca', label: 'BCA', icon: bcaIcon },
+  { id: 'shopeePay', label: 'ShopeePay', icon: shopeePayIcon },
+  { id: 'ovo', label: 'OVO', icon: ovoIcon },
+  { id: 'linkAja', label: 'LinkAja', icon: linkAjaIcon },
+  { id: 'dana', label: 'DANA', icon: danaIcon },
+  { id: 'goPay', label: 'GoPay', icon: goPayIcon },
+];
+
+function TesHome() {
+  const [selectedMethod, setSelectedMethod] = useState(null);
+  const [accountNumber, setAccountNumber] = useState('');
+  const [amount, setAmount] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [profile, setProfile] = useState({
+    nama: '',
+    email: '',
+    pekerjaan: '',
+    noHp: '',
+    alamat: '',
+    jeniskelamin: '',
+    tanggalLahir: '',
+    poin: '',
+  });
+  const [showPopup, setShowPopup] = useState(false); // State untuk popup
+  const [popupText, setPopupText] = useState(''); // Teks untuk popup
+  const [imageUrl, setImageUrl] = useState(''); // URL gambar maskot
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userId = localStorage.getItem('id'); // Ambil userId dari localStorage
+      try {
+        const response = await fetch(`http://localhost:5000/api/users/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProfile((prevProfile) => ({
+            ...prevProfile,
+            ...data,
+            avatar: data.gambar
+              ? `http://localhost:5000/asset/${data.gambar}`
+              : '',
+          }));
+        } else {
+          console.error('Gagal memuat data pengguna');
+        }
+      } catch (error) {
+        console.error('Kesalahan saat memuat data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleSelect = (method) => {
+    setSelectedMethod(method);
+    setIsOpen(false);
+  };
+
+  const handleAmountChange = (e) => {
+    const value = e.target.value;
+    if (parseInt(value, 10) > parseInt(profile.poin, 10)) {
+      // Menampilkan popup ketika jumlah poin melebihi yang dimiliki
+      setPopupText('Jumlah poin tidak boleh melebihi poin yang Anda miliki');
+      setImageUrl(Image); // Ganti dengan URL gambar maskot error
+      setShowPopup(true);
+      return;
+    }
+    setAmount(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validasi input
+    if (!selectedMethod || !accountNumber || !amount) {
+      setPopupText('Mohon lengkapi semua field');
+      setImageUrl(Image1); // Gambar maskot error
+      setShowPopup(true);
+      return;
+    }
+
+    // Validasi jumlah poin
+    if (parseInt(amount, 10) > parseInt(profile.poin, 10)) {
+      setPopupText('Jumlah poin tidak boleh melebihi poin yang Anda miliki');
+      setImageUrl(Image); // Gambar maskot error
+      setShowPopup(true);
+      return;
+    }
+
+    try {
+      // Kirim data ke backend
+      const userId = localStorage.getItem('id');
+      const response = await axios.post('http://localhost:5000/api/transactions', {
+        userId,
+        amount: parseInt(amount, 10),
+        paymentMethod: selectedMethod.id,
+        accountNumber,
+      });
+
+      // Update poin pengguna secara dinamis
+      const updatedPoin = profile.poin - parseInt(amount, 10);
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        poin: updatedPoin,
+      }));
+
+      setPopupText('Transaksi berhasil dibuat');
+      setImageUrl(successImage); // Gambar maskot sukses
+      setShowPopup(true);
+      console.log('Response:', response.data);
+    } catch (error) {
+      console.error('Error saat mengirim data:', error);
+      setPopupText('Terjadi kesalahan saat membuat transaksi');
+      setImageUrl(Image); // Gambar maskot error
+      setShowPopup(true);
+      alert('Terjadi kesalahan saat membuat transaksi');
+    }
+  };
+
+  // Menutup popup
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
   return (
-    <div className="relative">
-      {/* Background Image with Gradient Overlay */}
-      <div
-        className="bg-cover bg-center h-[500px] md:h-[700px] p-4 md:p-12 rounded-lg shadow-lg"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(238, 159, 38, 0.5), rgba(238, 159, 38, 0.1)), url(${Image})`,
-        }}
-      >
-        <div className="absolute inset-0 flex flex-col justify-center items-start px-4 lg:px-32">
-          {/* Heading */}
-          <motion.h1
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-2 "
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 1,
-              ease: "easeOut",
-            }}
-          >
-            EnergiKu Kini
-          </motion.h1>
-          <motion.h1
-            className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 "
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 1,
-              ease: "easeOut",
-              delay: 0.5,
-            }}
-          >
-            EnergiKu Nanti
-          </motion.h1>
-
-          {/* Subtext */}
-          <motion.p
-            className="text-sm md:text-lg "
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 1,
-              ease: "easeOut",
-              delay: 1,
-            }}
-          >
-            Maksimalkan Potensi Energi Bersih
-          </motion.p>
-          <motion.p
-            className="text-sm md:text-lg mb-8 "
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{
-              duration: 1,
-              ease: "easeOut",
-              delay: 1.5,
-            }}
-          >
-            dan Ramah Lingkungan dengan EnergiKu
-          </motion.p>
-
-          {/* Button */}
-          <motion.button
-            className="text-sm md:text-base text-white px-4 py-2 md:px-6 md:py-3 rounded-full shadow-md hover:opacity-90 transition duration-300 flex items-center gap-2"
-            style={{ backgroundColor: "#EE9F26" }}
-            whileHover={{ rotate: 10 }}
-            transition={{
-              duration: 0.3,
-              ease: "easeInOut",
-            }}
-          >
-            <a href="/Energiku/detail" className="flex items-center">
-              Selengkapnya
-              <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-            </a>
-          </motion.button>
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto my-20">
+      <h1 className="text-2xl font-bold mb-6 text-center">Penukaran Poin</h1>
+      <p className="text-center mb-4">Poin Anda: <span className="font-bold">{profile.poin}</span></p>
+      <form className="space-y-6" onSubmit={handleSubmit}>
+        <div className="flex items-center space-x-4">
+          <label className="w-1/4 text-gray-700 font-bold">Metode</label>
+          <div className="relative w-3/4">
+            <div
+              className="form-input border border-gray-300 rounded-lg p-2 bg-[#D9D9D9] flex justify-between items-center cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {selectedMethod ? (
+                <div className="flex items-center space-x-2">
+                  <img
+                    src={selectedMethod.icon}
+                    alt={selectedMethod.label}
+                    className="w-15 h-6"
+                  />
+                  <span>{selectedMethod.label}</span>
+                </div>
+              ) : (
+                <span className="text-gray-500">Pilih Metode</span>
+              )}
+              <i
+                className={`fas fa-chevron-${isOpen ? 'up' : 'down'} text-gray-600`}
+              ></i>
+            </div>
+            {isOpen && (
+              <div className="absolute z-10 w-full bg-white shadow-lg rounded-lg mt-1 max-h-60 overflow-y-auto">
+                {paymentMethods.map((method) => (
+                  <div
+                    key={method.id}
+                    className="flex items-center space-x-2 p-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => handleSelect(method)}
+                  >
+                    <img
+                      src={method.icon}
+                      alt={method.label}
+                      className="w-15 h-6"
+                    />
+                    <span>{method.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+        <div className="flex items-center space-x-4">
+          <label className="w-1/4 text-gray-700 font-bold">Nomer Rekening</label>
+          <input
+            type="text"
+            className="form-input w-3/4 border border-gray-300 rounded-lg p-2 bg-[#D9D9D9]"
+            placeholder="Masukan Nomer Rekening Tujuan"
+            value={accountNumber}
+            onChange={(e) => setAccountNumber(e.target.value)}
+          />
+        </div>
+        <div className="flex items-center space-x-4">
+          <label className="w-1/4 text-gray-700 font-bold">Jumlah</label>
+          <input
+            type="number"
+            className="form-input w-3/4 border border-gray-300 rounded-lg p-2 bg-[#D9D9D9]"
+            placeholder="0"
+            value={amount}
+            onChange={handleAmountChange}
+          />
+        </div>
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            className="bg-[#EE9F26] text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-300"
+          >
+            Tukar
+          </button>
+        </div>
+      </form>
+
+      {/* Popup */}
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <img src={imageUrl} alt="Mascot" className="popup-image" />
+            <p>{popupText}</p>
+            <button onClick={closePopup}>Tutup</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default HeaderbgComponen;
+export default TesHome;

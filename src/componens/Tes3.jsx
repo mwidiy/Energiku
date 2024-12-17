@@ -8,6 +8,10 @@ import linkAjaIcon from '../assets/linkaja.png';
 import danaIcon from '../assets/dana.png';
 import goPayIcon from '../assets/gopay.png';
 
+import maskot from "../assets/maskot4.png"; // Gambar maskot error
+import maskot1 from "../assets/maskot1.png"; // Gambar maskot error
+import suksestf from "../assets/maskot7.png"; // Gambar maskot sukses
+
 const paymentMethods = [
   { id: 'bni', label: 'BNI', icon: bniIcon },
   { id: 'bca', label: 'BCA', icon: bcaIcon },
@@ -33,6 +37,10 @@ function Tes() {
     tanggalLahir: '',
     poin: '',
   });
+
+  const [showPopup, setShowPopup] = useState(false); // State untuk popup
+  const [popupText, setPopupText] = useState(''); // Teks untuk popup
+  const [imageUrl, setImageUrl] = useState(''); // URL gambar maskot
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +74,10 @@ function Tes() {
   const handleAmountChange = (e) => {
     const value = e.target.value;
     if (parseInt(value, 10) > parseInt(profile.poin, 10)) {
-      alert('Jumlah poin tidak boleh melebihi poin yang Anda miliki');
+      // Menampilkan popup ketika jumlah poin melebihi yang dimiliki
+      setPopupText('Jumlah poin tidak boleh melebihi poin yang Anda miliki');
+      setImageUrl(maskot); // Ganti dengan URL gambar maskot error
+      setShowPopup(true);
       return;
     }
     setAmount(value);
@@ -77,13 +88,17 @@ function Tes() {
 
     // Validasi input
     if (!selectedMethod || !accountNumber || !amount) {
-      alert('Mohon lengkapi semua field');
+      setPopupText('Mohon lengkapi semua field');
+      setImageUrl(maskot1); // Gambar maskot error
+      setShowPopup(true);
       return;
     }
 
     // Validasi jumlah poin
     if (parseInt(amount, 10) > parseInt(profile.poin, 10)) {
-      alert('Jumlah poin yang dimasukkan tidak boleh melebihi poin yang Anda miliki');
+      setPopupText('Jumlah poin tidak boleh melebihi poin yang Anda miliki');
+      setImageUrl(maskot); // Gambar maskot error
+      setShowPopup(true);
       return;
     }
 
@@ -104,13 +119,23 @@ function Tes() {
         poin: updatedPoin,
       }));
 
-      alert('Transaksi berhasil dibuat');
+      setPopupText('Transaksi berhasil dibuat');
+      setImageUrl(suksestf); // Gambar maskot sukses
+      setShowPopup(true);
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error saat mengirim data:', error);
+      setPopupText('Terjadi kesalahan saat membuat transaksi');
+      setImageUrl(maskot); // Gambar maskot error
+      setShowPopup(true);
       alert('Terjadi kesalahan saat membuat transaksi');
     }
   };
+
+    // Menutup popup
+    const closePopup = () => {
+      setShowPopup(false);
+    };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl mx-auto my-20">
@@ -129,7 +154,7 @@ function Tes() {
                   <img
                     src={selectedMethod.icon}
                     alt={selectedMethod.label}
-                    className="w-6 h-6"
+                    className="w-15 h-6"
                   />
                   <span>{selectedMethod.label}</span>
                 </div>
@@ -151,7 +176,7 @@ function Tes() {
                     <img
                       src={method.icon}
                       alt={method.label}
-                      className="w-6 h-6"
+                      className="w-15 h-6"
                     />
                     <span>{method.label}</span>
                   </div>
@@ -189,6 +214,16 @@ function Tes() {
           </button>
         </div>
       </form>
+              {/* Popup */}
+              {showPopup && (
+              <div className="popup">
+                <div className="popup-content">
+                  <img src={imageUrl} alt="Mascot" className="popup-image" />
+                  <p>{popupText}</p>
+                  <button className='cancel' onClick={closePopup}>Tutup</button>
+                </div>
+              </div>
+            )}
     </div>
   );
 }

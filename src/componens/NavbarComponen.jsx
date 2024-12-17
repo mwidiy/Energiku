@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
 import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
+import Image from '../assets/Profile_icon.png';
 
 const NavbarComponen = () => {
   const [menu, setMenu] = useState(false);
@@ -76,7 +77,7 @@ const NavbarComponen = () => {
             ...data,
             avatar: data.gambar
               ? `http://localhost:5000/asset/${data.gambar}`
-              : avatarPlaceholder,
+              : Image,
           }));
         } else {
           console.error('Gagal memuat data pengguna');
@@ -174,7 +175,7 @@ const NavbarComponen = () => {
           {/* Profile Icon with Dropdown */}
           <div className="relative text-[35px] hover:text-[#EE9F26] hidden lg:flex cursor-pointer ">
           <img
-            src={profile.avatar || '/default-avatar.png'}
+            src={profile.avatar || Image}
             alt="Profile"
             onClick={toggleDropdown}
             className="w-[35px] h-[35px] rounded-full cursor-pointer"

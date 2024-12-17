@@ -6,14 +6,27 @@ import xIcon from '../assets/x.png';
 import { motion } from "framer-motion";
 import axios from 'axios';
 
+import maskot from "../assets/maskot4.png"; // Gambar maskot error
+import maskot1 from "../assets/maskot1.png"; // Gambar maskot error
+import suksestf from "../assets/maskot7.png"; // Gambar maskot sukses
+
+
+
+
+
 function RegisterPage() {
     const [isAgreed, setIsAgreed] = useState(false);
+    const [showPopup, setShowPopup] = useState(false); // State untuk popup
+    const [popupText, setPopupText] = useState(''); // Teks untuk popup
+    const [imageUrl, setImageUrl] = useState(''); // URL gambar maskot
     const navigate = useNavigate();
 
     // Fungsi untuk langsung navigasi ke halaman login
     const handleRegister = async () => {
         if (!isAgreed) {
-            alert("Silakan setujui persyaratan dan kebijakan terlebih dahulu.");
+            setPopupText('Silakan setujui persyaratan dan kebijakan terlebih dahulu.');
+            setImageUrl(maskot); // Gambar maskot error
+            setShowPopup(true);
             return;
         }
 
@@ -22,8 +35,11 @@ function RegisterPage() {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+
         if (!nama || !email || !password) {
-            alert("Semua field harus diisi!");
+            setPopupText('Mohon lengkapi semua field');
+            setImageUrl(maskot); // Gambar maskot error
+            setShowPopup(true);
             return;
         }
 
@@ -36,13 +52,22 @@ function RegisterPage() {
             });
 
             if (response.status === 201) {
-                alert('Registrasi berhasil!');
+                setPopupText('Registrasi berhasil!');
+                setImageUrl(maskot1); // Gambar maskot error
+                setShowPopup(true);
                 navigate('/Energiku/Login');
             }
         } catch (error) {
             console.error(error);
-            alert('Registrasi gagal. Silakan coba lagi.');
+            setPopupText('Registrasi berhasil!');
+            setImageUrl(maskot); // Gambar maskot error
+            setShowPopup(true);
         }
+    };
+
+    // Menutup popup
+    const closePopup = () => {
+        setShowPopup(false);
     };
 
     return (
@@ -109,6 +134,7 @@ function RegisterPage() {
                         >
                             Daftar
                         </button>
+                        {/*
                         <div className="flex items-center justify-between mb-4">
                             <hr className="w-full border-gray-300" />
                             <span className="px-2 text-gray-500 text-sm">atau</span>
@@ -129,7 +155,7 @@ function RegisterPage() {
                                 <img src={xIcon} alt="X Icon" className="w-5 h-5 mr-2" />
                                 <span className="text-sm">Daftar dengan X</span>
                             </button>
-                        </div>
+                        </div>*/}
                     </form>
 
                     {/* Teks dan tombol "Kembali ke Halaman Login" */}
@@ -148,6 +174,17 @@ function RegisterPage() {
                 <div className="basis-3/4 flex items-center justify-center p-0 h-full">
                     <img src={registerImage} alt="Ilustrasi Register" className="object-cover h-full w-full rounded-lg" />
                 </div>
+
+                {/* Popup */}
+                {showPopup && (
+                    <div className="popup">
+                    <div className="popup-content">
+                        <img src={imageUrl} alt="Mascot" className="popup-image" />
+                        <p>{popupText}</p>
+                        <button onClick={closePopup}>Tutup</button>
+                    </div>
+                    </div>
+                )}
             </div>
         </div>
     );

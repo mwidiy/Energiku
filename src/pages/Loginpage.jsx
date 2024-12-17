@@ -107,31 +107,39 @@ function Loginpage() {
               >
                 Masuk
               </button>
-              <div className="flex items-center justify-between mb-4">
-                <hr className="w-full border-gray-300" />
-                <span className="px-2 text-gray-500 text-sm">atau</span>
-                <hr className="w-full border-gray-300" />
-              </div>
-              <div className="flex space-x-4">
-                <button
-                  className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow flex items-center justify-center w-1/2"
-                  type="button"
-                >
-                  <img
-                    src={googleIcon}
-                    alt="Google Icon"
-                    className="w-5 h-5 mr-2"
-                  />
-                  <span className="text-sm">Google</span>
-                </button>
-                <button
-                  className="bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow flex items-center justify-center w-1/2"
-                  type="button"
-                >
-                  <img src={xIcon} alt="X Icon" className="w-5 h-5 mr-2" />
-                  <span className="text-sm">X</span>
-                </button>
-              </div>
+              
+              {/*
+                <div className="flex items-center justify-between mb-4">
+                  <hr className="w-full border-gray-300" />
+                  <span className="px-2 text-gray-500 text-sm">atau</span>
+                  <hr className="w-full border-gray-300" />
+                </div>
+                <div className="flex space-x-4">
+                  <button
+                    className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow flex items-center justify-center w-1/2"
+                    type="button"
+                  >
+                    <img
+                      src={googleIcon}
+                      alt="Google Icon"
+                      className="w-5 h-5 mr-2"
+                    />
+                    <span className="text-sm">Google</span>
+                  </button>
+                  <button
+                    className="bg-black hover:bg-gray-800 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow flex items-center justify-center w-1/2"
+                    type="button"
+                  >
+                    <img 
+                      src={xIcon} 
+                      alt="X Icon" 
+                      className="w-5 h-5 mr-2" 
+                    />
+                    <span className="text-sm">X</span>
+                  </button>
+                </div>
+                */}
+
             </form>
           </div>
           <p className="text-center text-sm mt-6">

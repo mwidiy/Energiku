@@ -5,6 +5,7 @@ import icon2 from '../assets/ppkelamin.png';
 import icon3 from '../assets/ppulang.png';
 import coin from '../assets/coin.png';
 
+
 import CoinTradeComponen from './CoinTradeComponen';
 import bniIcon from '../assets/bni.png';
 import bcaIcon from '../assets/bca.png';
@@ -15,6 +16,7 @@ import danaIcon from '../assets/dana.png';
 import goPayIcon from '../assets/gopay.png';
 
 import Tes from './Tes3';
+import Image from '../assets/Profile_icon.png';
 
 
   
@@ -34,6 +36,8 @@ function ProfileComponen() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [transactions, setTransactions] = useState([]); // State untuk riwayat transaksi
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       const userId = localStorage.getItem('id');
@@ -46,7 +50,7 @@ function ProfileComponen() {
             ...data,
             avatar: data.gambar
               ? `http://localhost:5000/asset/${data.gambar}`
-              : avatarPlaceholder,
+              : Image,
           }));
         } else {
           console.error('Gagal memuat data pengguna');
@@ -455,7 +459,7 @@ function ProfileComponen() {
             </div>
             
             <div className="text-center">
-                <span>{profile.poin}</span> = <span className="opacity-50">Rp{nilaiRupiah}</span>
+                <span>{profile.poin || 0}</span> = <span className="opacity-50">Rp{nilaiRupiah}</span>
             </div>
           </div>
         </div>
