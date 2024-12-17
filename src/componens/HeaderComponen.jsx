@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -29,6 +29,12 @@ import Image17 from "../assets/support7.png";
 import Image18 from "../assets/support8.png";
 import Image19 from "../assets/support9.jpeg";
 
+import HeaderbgComponen from "./HeaderbgComponen";
+import NavbarComponen from "./NavbarComponen";
+import Footer from "./FooterComponen";
+
+import LoadingAnimation from './LoadingAnimation';
+
 // Animation variants
 const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 const slideInLeft = {
@@ -45,7 +51,8 @@ const slideUp = {
   visible: { y: 0, opacity: 1 },
 };
 
-function NavbarComponen() {
+function HeaderComponen() {
+  const [isLoading, setIsLoading] = useState(true); // State untuk loading
   const settings = {
     accessibility: true,
     dots: true,
@@ -163,8 +170,22 @@ function NavbarComponen() {
     threshold: 0.1,
   });
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 detik
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div>
+      {isLoading ? (
+        <LoadingAnimation size="150px" bgColor="#f0f0f0" />
+      ) : (
+      <>
+      <NavbarComponen />
+      <HeaderbgComponen />
       <div>
         {/* Bio Energi Section */}
         <motion.div
@@ -436,8 +457,11 @@ function NavbarComponen() {
         </motion.div>
       */}
       </div>
+      <Footer />
+      </>
+      )}
     </div>
   );
 }
 
-export default NavbarComponen;
+export default HeaderComponen;

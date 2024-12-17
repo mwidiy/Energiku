@@ -3,7 +3,6 @@ import HeaderComponen from '../componens/HeaderComponen';
 import Navbar from '../componens/NavbarComponen';
 import Header from '../componens/HeaderbgComponen';
 import Footer from '../componens/FooterComponen'
-import TesHome from '../componens/TesHome'
 
 
 
@@ -11,11 +10,10 @@ import TesHome from '../componens/TesHome'
 const Homepage = () => {
   return (
     <div>
-      <Navbar />
-      <Header />
-      {/* <TesHome /> */}
+      {/* <Navbar /> */}
+      {/* <Header /> */}
       <HeaderComponen />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

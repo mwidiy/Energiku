@@ -1,11 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Image from "../assets/about0.png";
+import emailjs from "emailjs-com"; // Import emailjs
 
 function Detailmitra() {
   const navigate = useNavigate();
+
+  // State untuk form input
+  const [formData, setFormData] = useState({
+    namaPendaftar: "",
+    namaPerusahaan: "",
+    kontak: "",
+    jenisBioEnergi: "",
+    jenisLimbah: "",
+    banyakLimbah: "",
+    waktuLimbah: ""
+  });
+
+  // Handle perubahan input
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle submit form
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Kirim email dengan data form
+    emailjs
+      .send(
+        "service_qyda5jc",  // Ganti dengan Service ID EmailJS kamu
+        "template_dejheso",  // Ganti dengan Template ID EmailJS kamu
+        {
+          from_name: formData.namaPendaftar,
+          from_perusahaan: formData.namaPerusahaan,
+          from_kontak: formData.kontak,
+          bio_energi: formData.jenisBioEnergi,
+          limbah: formData.jenisLimbah,
+          banyak_limbah: formData.banyakLimbah,
+          waktu_limbah: formData.waktuLimbah
+        },
+        "SXLcsFcj6D5cwYofq"  // Ganti dengan User ID EmailJS kamu
+      )
+      .then(
+        (result) => {
+          console.log("Email berhasil dikirim: ", result.text);
+          alert("Formulir berhasil dikirim!");
+        },
+        (error) => {
+          console.log("Terjadi kesalahan: ", error.text);
+          alert("Terjadi kesalahan saat mengirim formulir.");
+        }
+      );
+  };
 
   return (
     <div className="mt-[100px] flex flex-col items-center">
@@ -39,12 +89,15 @@ function Detailmitra() {
         </h2>
 
         {/* Formulir */}
-        <form className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           {/* Nama Pendaftar */}
           <label className="text-gray-700 text-xl font-semibold">
             Nama Pendaftar:
             <input
               type="text"
+              name="namaPendaftar"
+              value={formData.namaPendaftar}
+              onChange={handleChange}
               className="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
               placeholder="Masukkan nama Anda"
             />
@@ -55,6 +108,9 @@ function Detailmitra() {
             Nama Perusahaan/Instansi:
             <input
               type="text"
+              name="namaPerusahaan"
+              value={formData.namaPerusahaan}
+              onChange={handleChange}
               className="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
               placeholder="Masukkan nama perusahaan/instansi"
             />
@@ -65,6 +121,9 @@ function Detailmitra() {
             No. Hp / Email:
             <input
               type="text"
+              name="kontak"
+              value={formData.kontak}
+              onChange={handleChange}
               className="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
               placeholder="Masukkan nomor HP atau email"
             />
@@ -75,6 +134,9 @@ function Detailmitra() {
             Jenis Bio Energi yang Diproduksi:
             <input
               type="text"
+              name="jenisBioEnergi"
+              value={formData.jenisBioEnergi}
+              onChange={handleChange}
               className="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
               placeholder="Masukkan jenis bio energi"
             />
@@ -85,6 +147,9 @@ function Detailmitra() {
             Jenis Limbah yang Dibutuhkan:
             <input
               type="text"
+              name="jenisLimbah"
+              value={formData.jenisLimbah}
+              onChange={handleChange}
               className="mt-2 w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
               placeholder="Masukkan jenis limbah"
             />
@@ -96,11 +161,17 @@ function Detailmitra() {
             <div className="flex flex-col sm:flex-row gap-4 mt-2 items-center">
               <input
                 type="number"
+                name="banyakLimbah"
+                value={formData.banyakLimbah}
+                onChange={handleChange}
                 className="w-full sm:w-40 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
                 placeholder="kg/L"
               />
               <input
                 type="text"
+                name="waktuLimbah"
+                value={formData.waktuLimbah}
+                onChange={handleChange}
                 className="w-full sm:w-64 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#E34A2B]"
                 placeholder="minggu/bulan/tahun"
               />

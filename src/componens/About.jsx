@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -16,6 +16,7 @@ import TeamMember3 from "../assets/team3.jpg";
 import TeamMember4 from "../assets/team4.jpg";
 import TeamMember5 from "../assets/team5.jpg";
 import TeamMember6 from "../assets/team6.jpg";
+
 
 // Animation Variants
 const fadeIn = {
@@ -52,6 +53,7 @@ const teamMembers = [
 ];
 
 const About = () => {
+
   return (
     <div>
       {/* Background Image Section */}

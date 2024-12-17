@@ -5,11 +5,19 @@ import { VscAccount } from "react-icons/vsc";
 import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
 import Image from '../assets/Profile_icon.png';
 
+import maskot from "../assets/maskot4.png"; // Gambar maskot error
+import maskot1 from "../assets/maskot1.png"; // Gambar maskot error
+import suksestf from "../assets/maskot7.png"; // Gambar maskot sukses
+
 const NavbarComponen = () => {
   const [menu, setMenu] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State untuk status login
+
+  const [showPopup, setShowPopup] = useState(false); // State untuk popup
+  const [popupText, setPopupText] = useState(''); // Teks untuk popup
+  const [imageUrl, setImageUrl] = useState(''); // URL gambar maskot
 
   // Cek scroll untuk menambahkan efek navbar
   const handleScroll = () => {
@@ -51,7 +59,9 @@ const NavbarComponen = () => {
     localStorage.removeItem('userEmail'); // Opsional
     setIsLoggedIn(false);
     setDropdownOpen(false);
-    alert("You have successfully logged out!");
+    setPopupText('Kamu Berhasil Logout ..');
+    setImageUrl(maskot); // Gambar maskot error
+    setShowPopup(true);
   };
 
   const [profile, setProfile] = useState({
@@ -105,6 +115,11 @@ const NavbarComponen = () => {
     fetchData();
     fetchTransactions();
   }, []);
+
+      // Menutup popup
+      const closePopup = () => {
+        setShowPopup(false);
+      };
 
   return (
     <>
@@ -174,12 +189,25 @@ const NavbarComponen = () => {
 
           {/* Profile Icon with Dropdown */}
           <div className="relative text-[35px] hover:text-[#EE9F26] hidden lg:flex cursor-pointer ">
-          <img
-            src={profile.avatar || Image}
-            alt="Profile"
-            onClick={toggleDropdown}
-            className="w-[35px] h-[35px] rounded-full cursor-pointer"
-          />
+          {isLoggedIn ? (
+                  <>
+                  <img
+                    src={profile.avatar || Image}
+                    alt="Profile"
+                    onClick={toggleDropdown}
+                    className="w-[35px] h-[35px] rounded-full cursor-pointer"
+                  />
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src={Image}
+                      alt="Profile"
+                      onClick={toggleDropdown}
+                      className="w-[35px] h-[35px] rounded-full cursor-pointer"
+                    />
+                  </>
+                )}
             {dropdownOpen && (
               <div className="text-xl absolute right-0 mt-10 w-50 bg-white bg-opacity-50 rounded-lg shadow-lg z-10 p-5 ">
                 {isLoggedIn ? (
@@ -228,6 +256,17 @@ const NavbarComponen = () => {
               <AiOutlineMenuUnfold size={25} onClick={handleChange} />
             )}
           </div>
+
+          {/* Popup */}
+          {showPopup && (
+              <div className="popup">
+                <div className="popup-content">
+                  <img src={imageUrl} alt="Mascot" className="popup-image" />
+                  <p>{popupText}</p>
+                  <button className='cancel' onClick={closePopup}>Tutup</button>
+                </div>
+              </div>
+            )}
         </div>
       </div>
     </>

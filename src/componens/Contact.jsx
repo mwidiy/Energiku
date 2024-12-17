@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import Image0 from "../assets/contact0.png";
-import Image1 from "../assets/contact1.png"; // Farmer image
-import Image4 from "../assets/contact4.png"; // Background for form section
-import Image5 from "../assets/contact2.png"; // Arrow icon
+import Image1 from "../assets/contact1.png";
+import Image4 from "../assets/contact4.png";
+import Image5 from "../assets/contact2.png";
 import { motion } from "framer-motion";
+import emailjs from "emailjs-com";
 
 const fadeIn = {
   hidden: { opacity: 0 },
@@ -27,6 +28,48 @@ const slideInFromRight = {
 };
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Kirim email menggunakan EmailJS
+    emailjs
+      .send(
+        "service_vsqeo3u",  // Ganti dengan Service ID Anda
+        "template_dktm1r6",  // Ganti dengan Template ID Anda
+        formData,
+        "SXLcsFcj6D5cwYofq"  // Ganti dengan User ID Anda
+      )
+      .then(
+        (response) => {
+          console.log("Pesan berhasil dikirim:", response);
+          alert("Pesan Anda berhasil dikirim!");
+          setFormData({ name: "", phone: "", email: "", subject: "", message: "" }); // Reset form
+        },
+        (error) => {
+          console.error("Gagal mengirim pesan:", error);
+          alert("Terjadi kesalahan, coba lagi nanti.");
+        }
+      );
+  };
+
   return (
     <div>
       {/* Background Image with Gradient Overlay */}
@@ -68,8 +111,8 @@ const Contact = () => {
             </h4>
           </div>
           <div className="text-sm sm:text-base space-y-2">
-            <p>info@kaligrafi.com</p>
-            <p>anggi.budiyanto@gmail.com</p>
+            <p>muhammadwidi72@gmail.com</p>
+            <p>Energiku.Official@gmail.com</p>
           </div>
           <div className="absolute bottom-2 right-2">
             <img
@@ -95,8 +138,8 @@ const Contact = () => {
             </h4>
           </div>
           <div className="text-sm sm:text-base space-y-2">
-            <p>0853 xxxx xxxx</p>
-            <p>0812 xxxx xxxx</p>
+            <p>0895 3672 94477</p>
+            <p>0822 4624 8114</p>
           </div>
           <div className="absolute bottom-2 right-2">
             <img
@@ -146,7 +189,7 @@ const Contact = () => {
         <motion.div
           className="relative w-full sm:w-[1100px] h-[500px] bg-cover bg-center rounded-lg shadow-lg p-8 flex"
           style={{
-            backgroundImage: `url(${Image4})`, // Setting Image4 as the background
+            backgroundImage: `url(${Image4})`,
           }}
           initial="hidden"
           animate="visible"
@@ -175,16 +218,22 @@ const Contact = () => {
             <h4 className="text-base sm:text-xl font-semibold mb-3 sm:mb-4 text-center sm:text-left">
               Apakah Kamu Mempunyai Pertanyaan?
             </h4>
-            <form className="space-y-3 sm:space-y-4">
+            <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
               {/* Nama dan No. Telepon */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Nama"
                   className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
                 />
                 <input
                   type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="No. Telepon"
                   className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
                 />
@@ -194,11 +243,17 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Alamat Email"
                   className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
                 />
                 <input
                   type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Subjek"
                   className="w-full p-2 sm:p-3 border border-black rounded-md placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
                 />
@@ -206,6 +261,9 @@ const Contact = () => {
 
               {/* Komentar */}
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Komentar"
                 className="w-full p-2 sm:p-3 border border-black rounded-md h-20 sm:h-24 placeholder-[#EE9F26] text-black bg-white bg-opacity-20 text-sm sm:text-base"
               ></textarea>
@@ -223,8 +281,6 @@ const Contact = () => {
           </motion.div>
         </motion.div>
       </motion.div>
-
-      {/* Map Section */}
       <div className="flex justify-center mb-[100px]">
         <div className="relative w-full max-w-7xl">
           <iframe

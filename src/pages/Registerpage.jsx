@@ -181,7 +181,7 @@ function RegisterPage() {
                     <div className="popup-content">
                         <img src={imageUrl} alt="Mascot" className="popup-image" />
                         <p>{popupText}</p>
-                        <button onClick={closePopup}>Tutup</button>
+                        <button className='cancel' onClick={closePopup}>Tutup</button>
                     </div>
                     </div>
                 )}

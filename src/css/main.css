@@ -321,7 +321,7 @@
   display: block;  /* Untuk memastikan gambar berada di tengah */
 }
 
-button .cancel {
+.cancel {
   padding: 10px 20px;
   background-color: #ff5c5c;
   color: white;
@@ -330,6 +330,6 @@ button .cancel {
   cursor: pointer;
 }
 
-button .cancel:hover {
+.cancel:hover {
   background-color: #e04d4d;
 }
