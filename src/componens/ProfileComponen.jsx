@@ -433,7 +433,7 @@ function ProfileComponen() {
           {/* Extraction History */}
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-lg font-semibold mb-2 text-center">
-              Riwayat Ekstraksi
+              Riwayat Penukaran
             </h2>
             <table className="w-full">
               <thead>
@@ -459,7 +459,7 @@ function ProfileComponen() {
                 ) : (
                   <tr>
                     <td className="px-4 py-2 border text-center" colSpan="4">
-                      Tidak ada riwayat transaksi
+                      Tidak ada riwayat Penukaran
                     </td>
                   </tr>
                 )}

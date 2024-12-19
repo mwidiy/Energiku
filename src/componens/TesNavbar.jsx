@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import { NavLink } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
 import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
-import Image from '../assets/Profile_icon1.png';
-
-import maskot from "../assets/maskot4.png"; // Gambar maskot error
-import maskot1 from "../assets/maskot1.png"; // Gambar maskot error
-import suksestf from "../assets/maskot7.png"; // Gambar maskot sukses
+import Image from '../assets/Profile_icon.png';
 
 const NavbarComponen = () => {
   const [menu, setMenu] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // State untuk status login
-
-  const [showPopup, setShowPopup] = useState(false); // State untuk popup
-  const [popupText, setPopupText] = useState(''); // Teks untuk popup
-  const [imageUrl, setImageUrl] = useState(''); // URL gambar maskot
 
   // Cek scroll untuk menambahkan efek navbar
   const handleScroll = () => {
@@ -59,9 +50,15 @@ const NavbarComponen = () => {
     localStorage.removeItem('userEmail'); // Opsional
     setIsLoggedIn(false);
     setDropdownOpen(false);
-    setPopupText('Kamu Berhasil Logout ..');
-    setImageUrl(maskot); // Gambar maskot error
-    setShowPopup(true);
+    alert("You have successfully logged out!");
+  };
+
+  // Login: simulasikan proses login dan update status login
+  const handleLogin = () => {
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true);
+    setDropdownOpen(false);
+    alert("You have successfully logged in!");
   };
 
   const [profile, setProfile] = useState({
@@ -97,29 +94,8 @@ const NavbarComponen = () => {
       }
     };
 
-    const fetchTransactions = async () => {
-      const userId = localStorage.getItem('id');
-      try {
-        const response = await fetch(`http://localhost:5000/api/transactions/${userId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setTransactions(data.data); // Akses ke properti data
-        } else {
-          console.error('Gagal memuat riwayat transaksi');
-        }
-      } catch (error) {
-        console.error('Kesalahan saat memuat riwayat transaksi:', error);
-      }
-    };
-
     fetchData();
-    fetchTransactions();
   }, []);
-
-      // Menutup popup
-      const closePopup = () => {
-        setShowPopup(false);
-      };
 
   return (
     <>
@@ -133,6 +109,7 @@ const NavbarComponen = () => {
             <img src={logo} alt="Logo" />
           </div>
 
+          {/* Menu Desktop */}
           <nav className="hidden md:flex gap-x-3 text-lg font-medium">
             <NavLink
               to="/Energiku"
@@ -176,7 +153,7 @@ const NavbarComponen = () => {
               Berita & Edukasi
             </NavLink>
             <NavLink
-              to="/Energiku/contak"
+              to="/Energiku/contact"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -189,25 +166,12 @@ const NavbarComponen = () => {
 
           {/* Profile Icon with Dropdown */}
           <div className="relative text-[35px] hover:text-[#EE9F26] hidden lg:flex cursor-pointer ">
-          {isLoggedIn ? (
-                  <>
-                  <img
-                    src={profile.avatar || Image}
-                    alt="Profile"
-                    onClick={toggleDropdown}
-                    className="w-[35px] h-[35px] rounded-full cursor-pointer"
-                  />
-                  </>
-                ) : (
-                  <>
-                    <img
-                      src={Image}
-                      alt="Profile"
-                      onClick={toggleDropdown}
-                      className="w-[35px] h-[35px] rounded-full cursor-pointer"
-                    />
-                  </>
-                )}
+            <img
+              src={profile.avatar || Image}
+              alt="Profile"
+              onClick={toggleDropdown}
+              className="w-[35px] h-[35px] rounded-full cursor-pointer"
+            />
             {dropdownOpen && (
               <div className="text-xl absolute right-0 mt-10 w-50 bg-white bg-opacity-50 rounded-lg shadow-lg z-10 p-5 ">
                 {isLoggedIn ? (
@@ -256,8 +220,9 @@ const NavbarComponen = () => {
               <AiOutlineMenuUnfold size={25} onClick={handleChange} />
             )}
           </div>
+        </div>
 
-                  {/* Mobile Menu */}
+        {/* Mobile Menu */}
         <div
           className={`lg:hidden flex flex-col bg-slate-700 text-white fixed left-0 top-0 w-full h-screen overflow-y-auto transition-transform duration-300 ${menu ? "translate-x-0" : "-translate-x-full"}`}
         >
@@ -333,18 +298,6 @@ const NavbarComponen = () => {
                     </NavLink>
                   </>
                 )}
-        </div>
-
-          {/* Popup */}
-          {showPopup && (
-              <div className="popup">
-                <div className="popup-content">
-                  <img src={imageUrl} alt="Mascot" className="popup-image" />
-                  <p>{popupText}</p>
-                  <button className='cancel' onClick={closePopup}>Tutup</button>
-                </div>
-              </div>
-            )}
         </div>
       </div>
     </>
