@@ -1,5 +1,5 @@
 import React from 'react';
-import Image2 from '../assets/Icon.png'; // Sesuaikan path gambar loading
+import Image2 from '../assets/Icon.ico'; // Sesuaikan path gambar loading
 
 const LoadingAnimation = ({ size = '200px', bgColor = '#fffbfb' }) => {
   return (

@@ -135,7 +135,7 @@ const NavbarComponen = () => {
 
           <nav className="hidden md:flex gap-x-3 text-lg font-medium">
             <NavLink
-              to="/Energiku"
+              to="/"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -146,7 +146,7 @@ const NavbarComponen = () => {
               Beranda
             </NavLink>
             <NavLink
-              to="/Energiku/about"
+              to="/about"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -156,7 +156,7 @@ const NavbarComponen = () => {
               Tentang Kami
             </NavLink>
             <NavLink
-              to="/Energiku/partner"
+              to="/partner"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -166,7 +166,7 @@ const NavbarComponen = () => {
               Mitra
             </NavLink>
             <NavLink
-              to="/Energiku/news"
+              to="/news"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -176,7 +176,7 @@ const NavbarComponen = () => {
               Berita & Edukasi
             </NavLink>
             <NavLink
-              to="/Energiku/contak"
+              to="/contak"
               className={({ isActive }) =>
                 isActive
                   ? "bg-[#EE9F26] text-white rounded-full p-2 cursor-pointer"
@@ -213,7 +213,7 @@ const NavbarComponen = () => {
                 {isLoggedIn ? (
                   <>
                     <NavLink
-                      to="/Energiku/Profile"
+                      to="/Profile"
                       className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-t-lg"
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -229,14 +229,14 @@ const NavbarComponen = () => {
                 ) : (
                   <>
                     <NavLink
-                      to="/Energiku/Login"
+                      to="/Login"
                       className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-t-lg"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Masuk
                     </NavLink>
                     <NavLink
-                      to="/Energiku/Register"
+                      to="/Register"
                       className="block bg-[#D9D9D9] px-4 py-2 text-gray-700 hover:bg-[#EE9F26] hover:text-white rounded-b-lg"
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -265,35 +265,35 @@ const NavbarComponen = () => {
             <AiOutlineClose className="text-white" size={25} onClick={closeMenu} />
           </div>
           <NavLink
-            to="/Energiku"
+            to=""
             className="p-4 border-gray-300 hover:bg-gray-200"
             onClick={closeMenu}
           >
             Beranda
           </NavLink>
           <NavLink
-            to="/Energiku/about"
+            to="/about"
             className="p-4 border-gray-300 hover:bg-gray-200"
             onClick={closeMenu}
           >
             Tentang Kami
           </NavLink>
           <NavLink
-            to="/Energiku/partner"
+            to="/partner"
             className="p-4 border-gray-300 hover:bg-gray-200"
             onClick={closeMenu}
           >
             Mitra
           </NavLink>
           <NavLink
-            to="/Energiku/news"
+            to="/news"
             className="p-4 border-gray-300 hover:bg-gray-200"
             onClick={closeMenu}
           >
             Berita & Edukasi
           </NavLink>
           <NavLink
-            to="/Energiku/contak"
+            to="/contak"
             className="p-4 border-gray-300 hover:bg-gray-200"
             onClick={closeMenu}
           >
@@ -302,7 +302,7 @@ const NavbarComponen = () => {
           {isLoggedIn ? (
                   <>
                     <NavLink
-                      to="/Energiku/Profile"
+                      to="/Profile"
                       className="p-4 bg-[#EE9F26] hover:bg-gray-200 text-black transition rounded-full mx-4 mt-4 focus:outline-none text-center"
                       onClick={() => setDropdownOpen(false)}
                     >
@@ -318,14 +318,14 @@ const NavbarComponen = () => {
                 ) : (
                   <>
                     <NavLink
-                      to="/Energiku/Login"
+                      to="/Login"
                       className="p-4 bg-[#EE9F26] hover:bg-gray-200 text-black transition rounded-full mx-4 mt-4 focus:outline-none text-center"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Masuk
                     </NavLink>
                     <NavLink
-                      to="/Energiku/Register"
+                      to="/Register"
                       className="p-4 bg-[#EE9F26] hover:bg-gray-200 text-black transition rounded-full mx-4 mt-4 focus:outline-none text-center"
                       onClick={() => setDropdownOpen(false)}
                     >

@@ -145,7 +145,7 @@ const Client = () => {
               bottom: "1%",
               cursor: "pointer", // Menambahkan pointer untuk indikasi bisa diklik
             }}
-            onClick={() => navigate("/Energiku/detailpartner")} // Navigasi ke halaman detailmitra
+            onClick={() => navigate("/detailpartner")} // Navigasi ke halaman detailmitra
           />
         </motion.div>
 

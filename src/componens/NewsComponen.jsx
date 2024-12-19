@@ -26,35 +26,35 @@ const News = () => {
       imageUrl: Image,
       width: "600px",
       height: "650px",
-      link: "/Energiku/Detailberita2",
+      link: "/Detailberita2",
     },
     {
       id: 2,
       imageUrl: Image1,
       width: "600px",
       height: "300px",
-      link: "/Energiku/Detailberita",
+      link: "/Detailberita",
     },
     {
       id: 3,
       imageUrl: Image2,
       width: "600px",
       height: "315px",
-      link: "/Energiku/Detailberita3",
+      link: "/Detailberita3",
     },
     {
       id: 4,
       imageUrl: Image3,
       width: "600px",
       height: "310px",
-      link: "/Energiku/Detailberita4",
+      link: "/Detailberita4",
     },
     {
       id: 5,
       imageUrl: Image4,
       width: "600px",
       height: "310px",
-      link: "/Energiku/Detailberita5",
+      link: "/Detailberita5",
     },
   ];
 
@@ -200,7 +200,7 @@ const News = () => {
         </div>
       </motion.div>
       <motion.a
-        href="/Energiku/semuaberita"
+        href="/semuaberita"
         className="mb-4 text-center text-[#EE9F26] cursor-pointer mx-auto block"
         initial="hidden"
         animate="visible"

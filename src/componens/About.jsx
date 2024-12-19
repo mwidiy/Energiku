@@ -208,7 +208,7 @@ const About = () => {
             className="text-white px-5 py-2 rounded-full shadow-lg hover:opacity-90 transition duration-300 flex items-center gap-2 mb-28"
             style={{ backgroundColor: "#EE9F26" }}
           >
-            <a a href="/Energiku/detailabout">
+            <a a href="/detailabout">
               Selengkapnya
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </a>

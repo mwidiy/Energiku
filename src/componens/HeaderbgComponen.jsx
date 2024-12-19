@@ -73,7 +73,7 @@ function HeaderbgComponen() {
               ease: "easeInOut",
             }}
           >
-            <NavLink to="/Energiku/detail">
+            <NavLink to="/detail">
               Selengkapnya
               <FontAwesomeIcon icon={faAngleRight} />
             </NavLink>

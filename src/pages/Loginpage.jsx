@@ -22,7 +22,7 @@ function Loginpage() {
 
       if (response.status === 200) {
         // Jika login berhasil, arahkan ke halaman utama
-        navigate('/Energiku');
+        navigate('/');
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('nama',response.data.user.nama);
         localStorage.setItem('email',response.data.user.email); // Ganti dengan field email dari API
@@ -88,7 +88,7 @@ function Loginpage() {
                   required
                 />
                 <Link
-                  to="/Energiku/ForgotPassword"
+                  to="//ForgotPassword"
                   className="inline-block align-baseline text-sm text-blue-500 hover:text-blue-800 mt-2"
                 >
                   Lupa Kata Sandi?
@@ -145,7 +145,7 @@ function Loginpage() {
           <p className="text-center text-sm mt-6">
             Belum punya akun?{' '}
             <Link
-              to="/Energiku/Register"
+              to="//Register"
               className="text-blue-500 hover:text-blue-800"
             >
               Daftar disini

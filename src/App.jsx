@@ -24,24 +24,24 @@ import Semuaberita from "./pages/Semuaberita";
 function App() {
   return (
     <Routes>
-      <Route path="/Energiku" Component={Homepage}/>
-      <Route path="/Energiku/detail" Component={Detailhome}/>
-      <Route path="/Energiku/about" Component={Aboutpage}/>
-      <Route path="/Energiku/detailabout" Component={Detailvisimisi}/>
-      <Route path="/Energiku/partner" Component={Partnerpage}/>
-      <Route path="/Energiku/detailpartner" Component={Detailmitra}/>
-      <Route path="/Energiku/news" Component={Newspage}/>
-      <Route path="/Energiku/semuaberita" Component={Semuaberita}/>
-      <Route path="/Energiku/Detailberita" Component={DetailBerita}/>
-      <Route path="/Energiku/Detailberita2" Component={DetailBerita2}/>
-      <Route path="/Energiku/Detailberita3" Component={DetailBerita3}/>
-      <Route path="/Energiku/Detailberita4" Component={DetailBerita4}/>
-      <Route path="/Energiku/Detailberita5" Component={DetailBerita5}/>
-      <Route path="/Energiku/contak" Component={Contakpage}/>
-      <Route path="/Energiku/profile" Component={Profilepage}/>
-      <Route path="/Energiku/Register" Component={Registerpage}/>
-      <Route path="/Energiku/login" Component={Loginpage}/>
-      <Route path="/Energiku/ForgotPassword" Component={ForgetPass}/>
+      <Route path="/" Component={Homepage}/>
+      <Route path="/detail" Component={Detailhome}/>
+      <Route path="/about" Component={Aboutpage}/>
+      <Route path="/detailabout" Component={Detailvisimisi}/>
+      <Route path="/partner" Component={Partnerpage}/>
+      <Route path="/detailpartner" Component={Detailmitra}/>
+      <Route path="/news" Component={Newspage}/>
+      <Route path="/semuaberita" Component={Semuaberita}/>
+      <Route path="/Detailberita" Component={DetailBerita}/>
+      <Route path="/Detailberita2" Component={DetailBerita2}/>
+      <Route path="/Detailberita3" Component={DetailBerita3}/>
+      <Route path="/Detailberita4" Component={DetailBerita4}/>
+      <Route path="/Detailberita5" Component={DetailBerita5}/>
+      <Route path="/contak" Component={Contakpage}/>
+      <Route path="/profile" Component={Profilepage}/>
+      <Route path="/Register" Component={Registerpage}/>
+      <Route path="/login" Component={Loginpage}/>
+      <Route path="/ForgotPassword" Component={ForgetPass}/>
     </Routes>
   )
 }

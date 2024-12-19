@@ -55,7 +55,7 @@ function RegisterPage() {
                 setPopupText('Registrasi berhasil!');
                 setImageUrl(maskot1); // Gambar maskot error
                 setShowPopup(true);
-                navigate('/Energiku/Login');
+                navigate('/Login');
             }
         } catch (error) {
             console.error(error);
@@ -163,7 +163,7 @@ function RegisterPage() {
                         <span className="text-sm text-black">Sudah punya akun? </span>
                         <button
                             className="text-sm text-blue-500 hover:underline ml-2"
-                            onClick={() => navigate('/Energiku/Login')}
+                            onClick={() => navigate('/Login')}
                         >
                             Kembali ke Halaman Login
                         </button>

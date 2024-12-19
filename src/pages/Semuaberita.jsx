@@ -32,7 +32,7 @@ const NewsComponent = () => {
       title: "Pemanfaatan Biomassa di Indonesia",
       description:
         "Sumber alternatif pembangkit listrik yang ramah lingkungan.",
-      link: "/Energiku/Detailberita2",
+      link: "/Detailberita2",
       type: "utama",
     },
     {
@@ -40,7 +40,7 @@ const NewsComponent = () => {
       imageUrl: Image1,
       title: "ESDM Sebut Hanya 2 dari 13 Industri Bioetanol",
       description: "Masa depan industri bioenergi di pasar internasional.",
-      link: "/Energiku/Detailberita",
+      link: "/Detailberita",
       type: "utama",
     },
     {
@@ -50,7 +50,7 @@ const NewsComponent = () => {
         "Potensi Bioenergi Indonesia Melimpah, Sumber Alternatif Pembangkit Listrik",
       description:
         "Indonesia memiliki potensi bioenergi sebagai salah satu sumber energi terbarukan yang melimpah ruah.",
-      link: "/Energiku/Detailberita3",
+      link: "/Detailberita3",
       type: "utama",
     },
     {
@@ -58,7 +58,7 @@ const NewsComponent = () => {
       imageUrl: Image3,
       title: "Pengembangan Bioenergi Masih Berjalan Lambat",
       description: "Apa penyebab utama dari keterlambatan ini?",
-      link: "/Energiku/Detailberita4",
+      link: "/Detailberita4",
       type: "utama",
     },
     {
@@ -67,7 +67,7 @@ const NewsComponent = () => {
       title: "Biomassa Jadi Jembatan Penting Menuju Percepatan Transisi Energi",
       description:
         "Pemenuhan energi fuel menjadi tantangan terbesar bagi Indonesia.",
-      link: "/Energiku/Detailberita5",
+      link: "/Detailberita5",
       type: "utama",
     },
     {
@@ -75,7 +75,7 @@ const NewsComponent = () => {
       imageUrl: Image6,
       title: "Percepatan Sukses Ekspor Bioavtur ke Australia",
       description: "Penyaluran Bioavtur Pertama di Indonesia.",
-      link: "/Energiku/Detailberita6",
+      link: "/Detailberita6",
       type: "tambahan",
     },
     {
@@ -85,7 +85,7 @@ const NewsComponent = () => {
         "Dirut BPDPKS Paparkan Keberhasilan Biodiesel Indonesia di Konferensi SVOC Rotterdam",
       description:
         "Kontribusi Biodiesel pada Pengurangan Emisi dan Kemandirian Energi.",
-      link: "/Energiku/Detailberita7",
+      link: "/Detailberita7",
       type: "tambahan",
     },
   ];
